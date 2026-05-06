@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { createClient } from "@metagptx/web-sdk";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,13 +26,12 @@ import {
   Menu,
   X,
   ArrowUp,
-  Loader2,
   Award,
   FileCheck,
   Truck,
 } from "lucide-react";
 
-const client = createClient();
+const EMAIL_ADDRESS = "sales@na2s2o3pro.com";
 
 const IMAGES = {
   hero: "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sw4caaafvq/hero-banner-chemical-factory.png",
@@ -124,7 +122,6 @@ function Navigation() {
           </span>
         </a>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -143,7 +140,6 @@ function Navigation() {
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -152,7 +148,6 @@ function Navigation() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden nav-blur border-t border-white/10 animate-fade-in">
           <div className="px-4 py-4 space-y-3">
@@ -196,7 +191,6 @@ function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image with parallax */}
       <div
         className="absolute inset-0 hero-parallax"
         style={{ transform: `translateY(${offset}px)` }}
@@ -210,7 +204,6 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/70 to-transparent" />
       </div>
 
-      {/* Decorative elements */}
       <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#D4A843]/5 blur-3xl" />
       <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-[#D4A843]/3 blur-3xl" />
 
@@ -260,7 +253,6 @@ function Hero() {
           </a>
         </div>
 
-        {/* Stats bar */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
           {stats.map((stat, i) => (
             <div
@@ -278,7 +270,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
         <div className="w-6 h-10 rounded-full border-2 border-[#D4A843]/40 flex items-start justify-center p-1">
           <div className="w-1.5 h-3 rounded-full bg-[#D4A843] animate-bounce" />
@@ -366,7 +357,6 @@ function ProductSpecs() {
         </ScrollRevealSection>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Pentahydrate */}
           <ScrollRevealSection delay={100}>
             <div className="glass rounded-2xl overflow-hidden hover:border-[#D4A843]/30 transition-all duration-500 group">
               <div className="relative h-48 overflow-hidden">
@@ -408,7 +398,6 @@ function ProductSpecs() {
             </div>
           </ScrollRevealSection>
 
-          {/* Anhydrous */}
           <ScrollRevealSection delay={200}>
             <div className="glass rounded-2xl overflow-hidden hover:border-[#D4A843]/30 transition-all duration-500 group">
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#132042] to-[#0A1628] flex items-center justify-center">
@@ -594,9 +583,7 @@ function WhyChooseUs() {
           {features.map((feat, i) => (
             <ScrollRevealSection key={i} delay={i * 100}>
               <div className="glass rounded-2xl p-6 group hover:border-[#D4A843]/30 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full">
-                {/* Gold accent line */}
                 <div className="absolute top-0 left-0 right-0 h-1 gold-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                 <div className="w-14 h-14 rounded-xl bg-[#D4A843]/10 flex items-center justify-center mb-5 group-hover:bg-[#D4A843]/20 transition-colors">
                   <feat.icon className="h-7 w-7 text-[#D4A843]" />
                 </div>
@@ -611,14 +598,11 @@ function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Additional trust elements */}
         <ScrollRevealSection delay={200}>
           <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center">
             <div>
               <Truck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">
-                Fast Lead Time
-              </h4>
+              <h4 className="text-white font-semibold mb-1">Fast Lead Time</h4>
               <p className="text-slate-400 text-sm">
                 7-15 days production, 3-5 days sample dispatch
               </p>
@@ -634,9 +618,7 @@ function WhyChooseUs() {
             </div>
             <div>
               <Award className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">
-                Flexible MOQ
-              </h4>
+              <h4 className="text-white font-semibold mb-1">Flexible MOQ</h4>
               <p className="text-slate-400 text-sm">
                 From 1MT trial orders to 1000MT+ annual contracts
               </p>
@@ -659,9 +641,7 @@ function InquiryForm() {
     quantity: "",
     message: "",
   });
-  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -670,41 +650,10 @@ function InquiryForm() {
     []
   );
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      setSubmitting(true);
-      setError("");
-      try {
-        await client.entities.inquiries.create({
-          data: {
-            name: form.name,
-            email: form.email,
-            company: form.company,
-            phone: form.phone,
-            product_grade: form.product_grade,
-            quantity: form.quantity,
-            message: form.message,
-          },
-        });
-        setSubmitted(true);
-        setForm({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          product_grade: "",
-          quantity: "",
-          message: "",
-        });
-      } catch {
-        setError("Submission failed. Please try again or contact us directly.");
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    [form]
-  );
+  const handleSubmit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  }, []);
 
   return (
     <section id="contact" className="py-20 sm:py-28 bg-[#080f1f]">
@@ -715,8 +664,7 @@ function InquiryForm() {
               Get In Touch
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Request a{" "}
-              <span className="gold-text">Free Quote</span>
+              Request a <span className="gold-text">Free Quote</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
               Fill out the form below and our team will respond within 24 hours
@@ -740,9 +688,12 @@ function InquiryForm() {
                     </div>
                     <div>
                       <p className="text-slate-400 text-sm">Email</p>
-                      <p className="text-white font-medium">
-                        sales@na2s2o3pro.com
-                      </p>
+                      <a
+                        href={`mailto:${EMAIL_ADDRESS}`}
+                        className="text-white font-medium hover:text-[#D4A843] transition-colors"
+                      >
+                        {EMAIL_ADDRESS}
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -808,11 +759,22 @@ function InquiryForm() {
                     Inquiry Submitted!
                   </h3>
                   <p className="text-slate-400 mb-6">
-                    Thank you for your interest. Our team will contact you within
-                    24 hours with a detailed quotation.
+                    Thank you! We'll get back to you soon. Our team will contact
+                    you within 24 hours with a detailed quotation.
                   </p>
                   <Button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm({
+                        name: "",
+                        email: "",
+                        company: "",
+                        phone: "",
+                        product_grade: "",
+                        quantity: "",
+                        message: "",
+                      });
+                    }}
                     variant="outline"
                     className="border-[#D4A843]/40 text-[#D4A843] hover:bg-[#D4A843]/10"
                   >
@@ -928,25 +890,12 @@ function InquiryForm() {
                       className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20 resize-none"
                     />
                   </div>
-                  {error && (
-                    <p className="text-red-400 text-sm">{error}</p>
-                  )}
                   <Button
                     type="submit"
-                    disabled={submitting}
                     className="w-full gold-gradient text-[#0A1628] font-bold text-lg py-6 rounded-xl shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
                   >
-                    {submitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        Submit Inquiry
-                        <ChevronRight className="ml-2 h-5 w-5" />
-                      </>
-                    )}
+                    Submit Inquiry
+                    <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </form>
               )}
@@ -964,7 +913,6 @@ function Footer() {
     <footer className="py-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 rounded-lg gold-gradient flex items-center justify-center font-bold text-[#0A1628]">
@@ -980,7 +928,6 @@ function Footer() {
             </p>
           </div>
 
-          {/* Products */}
           <div>
             <h4 className="text-white font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
@@ -1003,7 +950,6 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Certifications */}
           <div>
             <h4 className="text-white font-semibold mb-4">Certifications</h4>
             <ul className="space-y-2">
@@ -1024,13 +970,17 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-white font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Mail className="h-4 w-4 text-[#D4A843]" />
-                sales@na2s2o3pro.com
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="hover:text-[#D4A843] transition-colors"
+                >
+                  {EMAIL_ADDRESS}
+                </a>
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Phone className="h-4 w-4 text-[#D4A843]" />

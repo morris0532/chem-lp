@@ -1,7 +1,7 @@
-# Sodium Thiosulfate Landing Page - Development Plan
+# Sodium Thiosulfate Landing Page — Pure Frontend Rebuild
 
 ## Design References
-- Dark navy (#0A1628) + Gold accent (#D4A843) color scheme
+- Dark navy + gold B2B chemical supplier aesthetic
 - Glassmorphism effects with backdrop-blur
 - Smooth scroll animations via CSS + Intersection Observer
 - Premium B2B chemical supplier aesthetic
@@ -16,19 +16,15 @@
 - Text Muted: #94A3B8
 - Glass: rgba(255,255,255,0.05) with backdrop-blur
 
-## Images to Generate
-1. hero-banner-chemical-factory.jpg - Dramatic industrial chemical plant with blue lighting
-2. product-sodium-thiosulfate-crystals.jpg - Close-up of white crystalline powder
-3. application-water-treatment.jpg - Water treatment facility
-4. application-mining-gold.jpg - Gold mining operation
-5. application-pharmaceutical.jpg - Pharmaceutical lab
-6. application-textile.jpg - Textile manufacturing
+## Images (from image_manifest.json)
+1. hero-banner-chemical-factory.png
+2. product-sodium-thiosulfate-crystals.png
+3. application-water-treatment.png
+4. application-mining-gold.png
+5. application-pharmaceutical.png
+6. application-textile.png
 
 ## Development Tasks
-- [x] Create database table for inquiries
-- [x] Generate images for landing page
-- [x] Build landing page (Index.tsx) with all sections
-- [x] Add inquiry form with DB integration
-- [x] Add smooth scroll animations
+- [x] Rewrite Index.tsx — remove backend SDK, pure frontend with success toast on form submit
 - [x] Run lint and build
-- [x] CheckUI validation
+- [x] CheckUI validation (Grade 4)
