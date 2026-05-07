@@ -326,16 +326,7 @@ function ProductSpecs() {
       { param: "Water Insoluble", value: "≤ 0.01%" },
       { param: "CAS Number", value: "10102-17-7" },
     ],
-    anhydrous: [
-      { param: "Molecular Formula", value: "Na₂S₂O₃" },
-      { param: "Purity", value: "≥ 98.0%" },
-      { param: "Appearance", value: "White Powder" },
-      { param: "pH (5% Solution)", value: "6.0 – 9.5" },
-      { param: "Heavy Metals (as Pb)", value: "≤ 0.001%" },
-      { param: "Iron (Fe)", value: "≤ 0.005%" },
-      { param: "Water Insoluble", value: "≤ 0.03%" },
-      { param: "CAS Number", value: "7772-98-7" },
-    ],
+
   };
 
   return (
@@ -347,19 +338,18 @@ function ProductSpecs() {
               Product Specifications
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Two Grades, <span className="gold-text">One Standard</span>
+              Premium <span className="gold-text">Product Standards</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Available in Pentahydrate and Anhydrous forms, both meeting the
-              highest industry standards for purity and consistency.
+              Our Pentahydrate grade meets the highest industry standards for purity and consistency.
             </p>
           </div>
         </ScrollRevealSection>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="max-w-3xl mx-auto">
           <ScrollRevealSection delay={100}>
             <div className="glass rounded-2xl overflow-hidden hover:border-[#D4A843]/30 transition-all duration-500 group">
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={IMAGES.product}
                   alt="Sodium Thiosulfate Pentahydrate"
@@ -368,59 +358,30 @@ function ProductSpecs() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <span className="glass rounded-full px-3 py-1 text-xs text-[#D4A843] font-semibold">
-                    Most Popular
+                    Premium Grade
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-1">
-                  Pentahydrate
-                </h3>
-                <p className="text-[#D4A843] text-sm mb-4">
-                  Na₂S₂O₃·5H₂O · CAS 10102-17-7
-                </p>
-                <div className="space-y-2">
+              <div className="p-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                  <div>
+                    <h3 className="text-3xl font-bold text-white mb-1">
+                      Pentahydrate
+                    </h3>
+                    <p className="text-[#D4A843] text-lg">
+                      Na₂S₂O₃·5H₂O · CAS 10102-17-7
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 glass px-4 py-2 rounded-xl">
+                    <CheckCircle2 className="h-5 w-5 text-[#D4A843]" />
+                    <span className="text-white font-semibold">In Stock</span>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-2">
                   {specs.pentahydrate.map((row, i) => (
                     <div
                       key={i}
-                      className="flex justify-between py-1.5 border-b border-white/5 last:border-0"
-                    >
-                      <span className="text-slate-400 text-sm">
-                        {row.param}
-                      </span>
-                      <span className="text-white text-sm font-medium">
-                        {row.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </ScrollRevealSection>
-
-          <ScrollRevealSection delay={200}>
-            <div className="glass rounded-2xl overflow-hidden hover:border-[#D4A843]/30 transition-all duration-500 group">
-              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#132042] to-[#0A1628] flex items-center justify-center">
-                <div className="text-center">
-                  <FlaskConical className="h-16 w-16 text-[#D4A843]/40 mx-auto mb-2" />
-                  <span className="text-slate-400 text-sm">
-                    Anhydrous Grade
-                  </span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/80 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-1">
-                  Anhydrous
-                </h3>
-                <p className="text-[#D4A843] text-sm mb-4">
-                  Na₂S₂O₃ · CAS 7772-98-7
-                </p>
-                <div className="space-y-2">
-                  {specs.anhydrous.map((row, i) => (
-                    <div
-                      key={i}
-                      className="flex justify-between py-1.5 border-b border-white/5 last:border-0"
+                      className="flex justify-between py-2.5 border-b border-white/5 last:border-0"
                     >
                       <span className="text-slate-400 text-sm">
                         {row.param}
@@ -858,8 +819,6 @@ function InquiryForm() {
                           <SelectItem value="Pentahydrate">
                             Pentahydrate
                           </SelectItem>
-                          <SelectItem value="Anhydrous">Anhydrous</SelectItem>
-                          <SelectItem value="Both">Both Grades</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -933,7 +892,6 @@ function Footer() {
             <ul className="space-y-2">
               {[
                 "Pentahydrate Grade",
-                "Anhydrous Grade",
                 "Pharmaceutical Grade",
                 "Industrial Grade",
                 "Custom Specifications",
