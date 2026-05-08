@@ -157,13 +157,6 @@ function Navigation({ product }: { product: any }) {
 
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const onScroll = () => setOffset(window.scrollY * 0.3);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const stats = [
     { value: "20+", label: "Years Experience" },
     { value: "50+", label: "Countries Served" },
@@ -173,21 +166,22 @@ function Hero({ product }: { product: any }) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 hero-parallax"
-        style={{ transform: `translateY(${offset}px)` }}
+      {/* Fixed Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${product.images.hero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed' // This creates the fixed effect
+        }}
       >
-        <img
-          src={product.images.hero}
-          alt="Chemical Factory"
-          className="w-full h-[120%] object-cover"
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 via-[#0A1628]/60 to-[#0A1628]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/70 to-transparent" />
       </div>
 
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#D4A843]/5 blur-3xl" />
-      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-[#D4A843]/3 blur-3xl" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#D4A843]/5 blur-3xl z-0" />
+      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-[#D4A843]/3 blur-3xl z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16">
         <div className="animate-fade-in-up">
@@ -200,7 +194,7 @@ function Hero({ product }: { product: any }) {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-200 leading-tight">
-          {product.name}
+          {product.heroTitle.split(' Manufacturer')[0]}
           <br />
           <span className="gold-text">Manufacturer</span>
         </h1>
@@ -252,7 +246,7 @@ function Hero({ product }: { product: any }) {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float z-10">
         <div className="w-6 h-10 rounded-full border-2 border-[#D4A843]/40 flex items-start justify-center p-1">
           <div className="w-1.5 h-3 rounded-full bg-[#D4A843] animate-bounce" />
         </div>
@@ -271,7 +265,7 @@ function TrustBar() {
   ];
 
   return (
-    <section className="relative py-8 -mt-1">
+    <section className="relative py-8 -mt-1 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="glass-strong rounded-2xl p-6 sm:p-8">
@@ -298,7 +292,7 @@ function TrustBar() {
 /* ─── Product Specs ─── */
 function ProductSpecs({ product }: { product: any }) {
   return (
-    <section id="products" className="py-20 sm:py-28 relative">
+    <section id="products" className="py-20 sm:py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="text-center mb-16">
@@ -377,7 +371,7 @@ function ProductSpecs({ product }: { product: any }) {
 /* ─── Applications ─── */
 function Applications({ product }: { product: any }) {
   return (
-    <section id="applications" className="py-20 sm:py-28 bg-[#080f1f]">
+    <section id="applications" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="text-center mb-16">
@@ -396,8 +390,8 @@ function Applications({ product }: { product: any }) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {product.applications.map((app: any, i: number) => (
             <ScrollRevealSection key={i} delay={i * 100}>
-              <div className="group relative glass rounded-2xl overflow-hidden h-full">
-                <div className="aspect-[4/3] overflow-hidden">
+              <div className="group relative glass rounded-2xl overflow-hidden h-full flex flex-col">
+                <div className="aspect-[4/3] overflow-hidden relative">
                   <img
                     src={app.image}
                     alt={app.title}
@@ -405,19 +399,19 @@ function Applications({ product }: { product: any }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/20 to-transparent" />
                 </div>
-                <div className="p-6 relative -mt-12">
-                  <div className="inline-block px-3 py-1 bg-[#D4A843] text-[#0A1628] text-[10px] font-bold rounded-full mb-3 uppercase">
+                <div className="p-6 relative -mt-12 flex-grow flex flex-col">
+                  <div className="inline-block self-start px-3 py-1 bg-[#D4A843] text-[#0A1628] text-[10px] font-bold rounded-full mb-3 uppercase">
                     {app.tag}
                   </div>
                   <h3 className="text-lg font-bold text-white mb-3">
                     {app.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
                     {app.desc}
                   </p>
                   <a
                     href="#contact"
-                    className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all"
+                    className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all mt-auto"
                   >
                     Request Quote <ChevronRight className="h-4 w-4" />
                   </a>
@@ -457,7 +451,7 @@ function WhyChooseUs({ product }: { product: any }) {
   ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28">
+    <section id="why-us" className="py-20 sm:py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="text-center mb-16">
@@ -552,7 +546,7 @@ function InquiryForm({ product }: { product: any }) {
   }, []);
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-[#080f1f]">
+    <section id="contact" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="text-center mb-16">
@@ -804,7 +798,7 @@ function InquiryForm({ product }: { product: any }) {
 /* ─── Footer ─── */
 function Footer({ product }: { product: any }) {
   return (
-    <footer className="py-16 border-t border-white/5">
+    <footer className="py-16 border-t border-white/5 relative z-10 bg-[#0A1628]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
