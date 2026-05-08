@@ -173,7 +173,7 @@ function Hero({ product }: { product: any }) {
           backgroundImage: `url(${product.images.hero})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed' // This creates the fixed effect
+          backgroundAttachment: 'fixed'
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 via-[#0A1628]/60 to-[#0A1628]" />
@@ -308,49 +308,51 @@ function ProductSpecs({ product }: { product: any }) {
           </div>
         </ScrollRevealSection>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <ScrollRevealSection delay={100}>
-            <div className="relative group">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch"> {/* Changed to items-stretch */}
+          <ScrollRevealSection delay={100} className="flex h-full"> {/* Added flex h-full */}
+            <div className="relative group w-full flex h-full">
               <div className="absolute -inset-4 bg-[#D4A843]/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative glass rounded-3xl p-4 sm:p-6">
+              <div className="relative glass rounded-3xl p-4 sm:p-6 w-full flex items-center justify-center"> {/* Centered image vertically */}
                 <img
                   src={product.images.product}
                   alt={product.name}
-                  className="w-full rounded-2xl shadow-2xl"
+                  className="w-full rounded-2xl shadow-2xl object-cover h-full max-h-[600px]" // Optimized image fitting
                 />
               </div>
             </div>
           </ScrollRevealSection>
 
-          <ScrollRevealSection delay={200}>
-            <div className="glass rounded-3xl p-6 sm:p-10 border-l-4 border-l-[#D4A843]">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider">
-                  Premium Grade
-                </span>
-                <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider">
-                  In Stock
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                {product.name}
-              </h3>
-              <p className="text-[#D4A843] font-mono text-sm mb-8">
-                {product.chemicalFormula} · CAS {product.cas}
-              </p>
+          <ScrollRevealSection delay={200} className="flex h-full"> {/* Added flex h-full */}
+            <div className="glass rounded-3xl p-6 sm:p-10 border-l-4 border-l-[#D4A843] w-full flex flex-col justify-between"> {/* Added justify-between */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider">
+                    Premium Grade
+                  </span>
+                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider">
+                    In Stock
+                  </span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-[#D4A843] font-mono text-sm mb-8">
+                  {product.chemicalFormula} · CAS {product.cas}
+                </p>
 
-              <div className="space-y-4">
-                {product.specifications.map((spec: any, i: number) => (
-                  <div
-                    key={i}
-                    className="flex justify-between py-3 border-b border-white/5 group"
-                  >
-                    <span className="text-slate-400 group-hover:text-slate-300 transition-colors">
-                      {spec.label}
-                    </span>
-                    <span className="text-white font-medium">{spec.value}</span>
-                  </div>
-                ))}
+                <div className="space-y-4">
+                  {product.specifications.map((spec: any, i: number) => (
+                    <div
+                      key={i}
+                      className="flex justify-between py-3 border-b border-white/5 group"
+                    >
+                      <span className="text-slate-400 group-hover:text-slate-300 transition-colors">
+                        {spec.label}
+                      </span>
+                      <span className="text-white font-medium">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-10">
