@@ -308,63 +308,67 @@ function ProductSpecs({ product }: { product: any }) {
           </div>
         </ScrollRevealSection>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch"> {/* Changed to items-stretch */}
-          <ScrollRevealSection delay={100} className="flex h-full"> {/* Added flex h-full */}
-            <div className="relative group w-full flex h-full">
-              <div className="absolute -inset-4 bg-[#D4A843]/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative glass rounded-3xl p-4 sm:p-6 w-full flex items-center justify-center"> {/* Centered image vertically */}
+        <ScrollRevealSection delay={100}>
+          <div className="glass rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div className="grid lg:grid-cols-2 items-stretch">
+              {/* Left Side: Image */}
+              <div className="relative group bg-[#080f1f]/50 p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#D4A843]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <img
                   src={product.images.product}
                   alt={product.name}
-                  className="w-full rounded-2xl shadow-2xl object-cover h-full max-h-[600px]" // Optimized image fitting
+                  className="relative z-10 w-full rounded-2xl shadow-2xl object-cover max-h-[500px] transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-            </div>
-          </ScrollRevealSection>
 
-          <ScrollRevealSection delay={200} className="flex h-full"> {/* Added flex h-full */}
-            <div className="glass rounded-3xl p-6 sm:p-10 border-l-4 border-l-[#D4A843] w-full flex flex-col justify-between"> {/* Added justify-between */}
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider">
-                    Premium Grade
-                  </span>
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider">
-                    In Stock
-                  </span>
+              {/* Right Side: Specs */}
+              <div className="p-8 sm:p-12 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider border border-[#D4A843]/20">
+                      Premium Grade
+                    </span>
+                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider border border-emerald-500/20">
+                      In Stock
+                    </span>
+                  </div>
+                  <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                    {product.name}
+                  </h3>
+                  <p className="text-[#D4A843] font-mono text-base mb-10 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#D4A843]" />
+                    {product.chemicalFormula} · CAS {product.cas}
+                  </p>
+
+                  <div className="space-y-5">
+                    {product.specifications.map((spec: any, i: number) => (
+                      <div
+                        key={i}
+                        className="flex justify-between py-3 border-b border-white/5 group/item"
+                      >
+                        <span className="text-slate-400 group-hover/item:text-[#D4A843] transition-colors">
+                          {spec.label}
+                        </span>
+                        <span className="text-white font-semibold">{spec.value}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  {product.name}
-                </h3>
-                <p className="text-[#D4A843] font-mono text-sm mb-8">
-                  {product.chemicalFormula} · CAS {product.cas}
-                </p>
 
-                <div className="space-y-4">
-                  {product.specifications.map((spec: any, i: number) => (
-                    <div
-                      key={i}
-                      className="flex justify-between py-3 border-b border-white/5 group"
-                    >
-                      <span className="text-slate-400 group-hover:text-slate-300 transition-colors">
-                        {spec.label}
-                      </span>
-                      <span className="text-white font-medium">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-10">
-                <a href="#contact">
-                  <Button className="w-full sm:w-auto gold-gradient text-[#0A1628] font-bold px-10 py-6 rounded-xl">
-                    Request Full COA
+                <div className="mt-12 flex flex-col sm:flex-row gap-4">
+                  <a href="#contact" className="flex-1">
+                    <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10 hover:shadow-[#D4A843]/20 transition-all">
+                      Request Full COA
+                    </Button>
+                  </a>
+                  <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 py-7 rounded-2xl text-lg">
+                    Download SDS
                   </Button>
-                </a>
+                </div>
               </div>
             </div>
-          </ScrollRevealSection>
-        </div>
+          </div>
+        </ScrollRevealSection>
       </div>
     </section>
   );
