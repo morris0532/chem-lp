@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,10 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Droplets,
-  Pickaxe,
-  Pill,
-  Shirt,
   Factory,
   ShieldCheck,
   Globe,
@@ -30,22 +27,7 @@ import {
   FileCheck,
   Truck,
 } from "lucide-react";
-
-const EMAIL_ADDRESS = "sales@na2s2o3pro.com";
-
-const IMAGES = {
-  hero: "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sw4caaafvq/hero-banner-chemical-factory.png",
-  product:
-    "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7swyiyaafva/product-sodium-thiosulfate-crystals.png",
-  waterTreatment:
-    "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sw3rqaafwa/application-water-treatment.png",
-  mining:
-    "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sw45aaafua/application-mining-gold.png",
-  pharma:
-    "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sxtwqaafua/application-pharmaceutical.png",
-  textile:
-    "https://mgx-backend-cdn.metadl.com/generate/images/1194222/2026-05-05/n7sxwliaafta/application-textile.png",
-};
+import { products } from "@/content/products";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,7 +71,7 @@ function ScrollRevealSection({
 }
 
 /* ─── Navigation ─── */
-function Navigation() {
+function Navigation({ product }: { product: any }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -115,10 +97,10 @@ function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
           <div className="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center font-bold text-[#0A1628] text-lg">
-            Na
+            {product.chemicalFormula.substring(0, 2)}
           </div>
           <span className="text-xl font-bold text-white group-hover:text-[#D4A843] transition-colors">
-            Na₂S₂O₃ <span className="text-[#D4A843]">Pro</span>
+            {product.chemicalFormula} <span className="text-[#D4A843]">Pro</span>
           </span>
         </a>
 
@@ -174,7 +156,7 @@ function Navigation() {
 }
 
 /* ─── Hero ─── */
-function Hero() {
+function Hero({ product }: { product: any }) {
   const [offset, setOffset] = useState(0);
   useEffect(() => {
     const onScroll = () => setOffset(window.scrollY * 0.3);
@@ -196,7 +178,7 @@ function Hero() {
         style={{ transform: `translateY(${offset}px)` }}
       >
         <img
-          src={IMAGES.hero}
+          src={product.images.hero}
           alt="Chemical Factory"
           className="w-full h-[120%] object-cover"
         />
@@ -218,13 +200,13 @@ function Hero() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-200 leading-tight">
-          Premium Sodium Thiosulfate
+          {product.name}
           <br />
           <span className="gold-text">Manufacturer</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto animate-fade-in-up animation-delay-300">
-          Factory Direct | 99%+ Purity | Global Shipping
+          {product.subtitle}
           <br />
           <span className="text-slate-400">
             ISO 9001 · GMP · NSF Certified
@@ -297,7 +279,7 @@ function TrustBar() {
               {certs.map((cert, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 justify-center group"
+                  className="flex items-center justify-center gap-3 group cursor-default"
                 >
                   <cert.icon className="h-8 w-8 text-[#D4A843] group-hover:scale-110 transition-transform" />
                   <span className="text-sm sm:text-base font-semibold text-white">
@@ -314,23 +296,9 @@ function TrustBar() {
 }
 
 /* ─── Product Specs ─── */
-function ProductSpecs() {
-  const specs = {
-    pentahydrate: [
-      { param: "Molecular Formula", value: "Na₂S₂O₃·5H₂O" },
-      { param: "Purity", value: "≥ 99.0%" },
-      { param: "Appearance", value: "White Crystals" },
-      { param: "pH (5% Solution)", value: "6.5 – 9.5" },
-      { param: "Heavy Metals (as Pb)", value: "≤ 0.001%" },
-      { param: "Iron (Fe)", value: "≤ 0.003%" },
-      { param: "Water Insoluble", value: "≤ 0.01%" },
-      { param: "CAS Number", value: "10102-17-7" },
-    ],
-
-  };
-
+function ProductSpecs({ product }: { product: any }) {
   return (
-    <section id="products" className="py-20 sm:py-28">
+    <section id="products" className="py-20 sm:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
           <div className="text-center mb-16">
@@ -341,57 +309,62 @@ function ProductSpecs() {
               Premium <span className="gold-text">Product Standards</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our Pentahydrate grade meets the highest industry standards for purity and consistency.
+              Our products meet the highest industry standards for purity and consistency.
             </p>
           </div>
         </ScrollRevealSection>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <ScrollRevealSection delay={100}>
-            <div className="glass rounded-2xl overflow-hidden hover:border-[#D4A843]/30 transition-all duration-500 group">
-              <div className="relative h-64 overflow-hidden">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-[#D4A843]/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative glass rounded-3xl p-4 sm:p-6">
                 <img
-                  src={IMAGES.product}
-                  alt="Sodium Thiosulfate Pentahydrate"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src={product.images.product}
+                  alt={product.name}
+                  className="w-full rounded-2xl shadow-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                  <span className="glass rounded-full px-3 py-1 text-xs text-[#D4A843] font-semibold">
-                    Premium Grade
-                  </span>
-                </div>
               </div>
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                  <div>
-                    <h3 className="text-3xl font-bold text-white mb-1">
-                      Pentahydrate
-                    </h3>
-                    <p className="text-[#D4A843] text-lg">
-                      Na₂S₂O₃·5H₂O · CAS 10102-17-7
-                    </p>
+            </div>
+          </ScrollRevealSection>
+
+          <ScrollRevealSection delay={200}>
+            <div className="glass rounded-3xl p-6 sm:p-10 border-l-4 border-l-[#D4A843]">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider">
+                  Premium Grade
+                </span>
+                <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider">
+                  In Stock
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                {product.name}
+              </h3>
+              <p className="text-[#D4A843] font-mono text-sm mb-8">
+                {product.chemicalFormula} · CAS {product.cas}
+              </p>
+
+              <div className="space-y-4">
+                {product.specifications.map((spec: any, i: number) => (
+                  <div
+                    key={i}
+                    className="flex justify-between py-3 border-b border-white/5 group"
+                  >
+                    <span className="text-slate-400 group-hover:text-slate-300 transition-colors">
+                      {spec.label}
+                    </span>
+                    <span className="text-white font-medium">{spec.value}</span>
                   </div>
-                  <div className="flex items-center gap-2 glass px-4 py-2 rounded-xl">
-                    <CheckCircle2 className="h-5 w-5 text-[#D4A843]" />
-                    <span className="text-white font-semibold">In Stock</span>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-x-12 gap-y-2">
-                  {specs.pentahydrate.map((row, i) => (
-                    <div
-                      key={i}
-                      className="flex justify-between py-2.5 border-b border-white/5 last:border-0"
-                    >
-                      <span className="text-slate-400 text-sm">
-                        {row.param}
-                      </span>
-                      <span className="text-white text-sm font-medium">
-                        {row.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <a href="#contact">
+                  <Button className="w-full sm:w-auto gold-gradient text-[#0A1628] font-bold px-10 py-6 rounded-xl">
+                    Request Full COA
+                  </Button>
+                </a>
               </div>
             </div>
           </ScrollRevealSection>
@@ -402,38 +375,7 @@ function ProductSpecs() {
 }
 
 /* ─── Applications ─── */
-function Applications() {
-  const apps = [
-    {
-      icon: Droplets,
-      title: "Water Treatment",
-      desc: "Essential dechlorination agent for municipal and industrial water treatment facilities. Rapidly neutralizes chlorine residuals to protect aquatic ecosystems and pipeline infrastructure.",
-      image: IMAGES.waterTreatment,
-      tag: "Largest Segment",
-    },
-    {
-      icon: Pickaxe,
-      title: "Mining & Gold Leaching",
-      desc: "Critical reagent in cyanide leaching processes for gold extraction. Acts as a lixiviant alternative and cyanide detoxification agent for environmentally responsible mining operations.",
-      image: IMAGES.mining,
-      tag: "High Demand",
-    },
-    {
-      icon: Pill,
-      title: "Pharmaceutical",
-      desc: "Medical-grade sodium thiosulfate used as a cyanide poisoning antidote and in chemotherapy support. Meets USP/EP pharmacopeia standards with full DMF documentation.",
-      image: IMAGES.pharma,
-      tag: "Medical Grade",
-    },
-    {
-      icon: Shirt,
-      title: "Textile & Dyeing",
-      desc: "Dechlorination agent after bleaching in textile processing. Prevents fabric damage and ensures consistent dye uptake for high-quality textile production.",
-      image: IMAGES.textile,
-      tag: "Cost Effective",
-    },
-  ];
-
+function Applications({ product }: { product: any }) {
   return (
     <section id="applications" className="py-20 sm:py-28 bg-[#080f1f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -446,43 +388,36 @@ function Applications() {
               Powering <span className="gold-text">Critical Industries</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              From water treatment to gold extraction, our sodium thiosulfate
-              delivers consistent performance across diverse industrial
-              applications.
+              Our {product.name} delivers consistent performance across diverse industrial applications.
             </p>
           </div>
         </ScrollRevealSection>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {apps.map((app, i) => (
+          {product.applications.map((app: any, i: number) => (
             <ScrollRevealSection key={i} delay={i * 100}>
-              <div className="glass rounded-2xl overflow-hidden group hover:border-[#D4A843]/30 transition-all duration-500 hover:-translate-y-2 h-full flex flex-col">
-                <div className="relative h-44 overflow-hidden">
+              <div className="group relative glass rounded-2xl overflow-hidden h-full">
+                <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={app.image}
                     alt={app.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/40 to-transparent" />
-                  <div className="absolute top-3 right-3">
-                    <span className="glass rounded-full px-3 py-1 text-xs text-[#D4A843] font-semibold">
-                      {app.tag}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-3 left-4">
-                    <app.icon className="h-8 w-8 text-[#D4A843]" />
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/20 to-transparent" />
                 </div>
-                <div className="p-5 flex-1 flex flex-col">
-                  <h3 className="text-lg font-bold text-white mb-2">
+                <div className="p-6 relative -mt-12">
+                  <div className="inline-block px-3 py-1 bg-[#D4A843] text-[#0A1628] text-[10px] font-bold rounded-full mb-3 uppercase">
+                    {app.tag}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">
                     {app.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed flex-1">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
                     {app.desc}
                   </p>
                   <a
                     href="#contact"
-                    className="inline-flex items-center text-[#D4A843] text-sm font-semibold mt-4 hover:gap-2 transition-all gap-1"
+                    className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all"
                   >
                     Request Quote <ChevronRight className="h-4 w-4" />
                   </a>
@@ -497,7 +432,7 @@ function Applications() {
 }
 
 /* ─── Why Choose Us ─── */
-function WhyChooseUs() {
+function WhyChooseUs({ product }: { product: any }) {
   const features = [
     {
       icon: Factory,
@@ -534,7 +469,7 @@ function WhyChooseUs() {
               <span className="gold-text">Manufacturing Partner</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Two decades of expertise delivering premium sodium thiosulfate to
+              Two decades of expertise delivering premium {product.name} to
               industries worldwide.
             </p>
           </div>
@@ -592,7 +527,7 @@ function WhyChooseUs() {
 }
 
 /* ─── Inquiry Form ─── */
-function InquiryForm() {
+function InquiryForm({ product }: { product: any }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -628,7 +563,7 @@ function InquiryForm() {
               Request a <span className="gold-text">Free Quote</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Fill out the form below and our team will respond within 24 hours
+              Fill out the form below for {product.name} and our team will respond within 24 hours
               with competitive pricing and full documentation.
             </p>
           </div>
@@ -650,10 +585,10 @@ function InquiryForm() {
                     <div>
                       <p className="text-slate-400 text-sm">Email</p>
                       <a
-                        href={`mailto:${EMAIL_ADDRESS}`}
+                        href={`mailto:${product.email}`}
                         className="text-white font-medium hover:text-[#D4A843] transition-colors"
                       >
-                        {EMAIL_ADDRESS}
+                        {product.email}
                       </a>
                     </div>
                   </div>
@@ -867,7 +802,7 @@ function InquiryForm() {
 }
 
 /* ─── Footer ─── */
-function Footer() {
+function Footer({ product }: { product: any }) {
   return (
     <footer className="py-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -875,14 +810,14 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 rounded-lg gold-gradient flex items-center justify-center font-bold text-[#0A1628]">
-                Na
+                {product.chemicalFormula.substring(0, 2)}
               </div>
               <span className="text-lg font-bold text-white">
-                Na₂S₂O₃ <span className="text-[#D4A843]">Pro</span>
+                {product.chemicalFormula} <span className="text-[#D4A843]">Pro</span>
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Leading manufacturer of premium sodium thiosulfate with 20+ years
+              Leading manufacturer of premium {product.name} with 20+ years
               of experience serving global industries.
             </p>
           </div>
@@ -934,10 +869,10 @@ function Footer() {
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Mail className="h-4 w-4 text-[#D4A843]" />
                 <a
-                  href={`mailto:${EMAIL_ADDRESS}`}
+                  href={`mailto:${product.email}`}
                   className="hover:text-[#D4A843] transition-colors"
                 >
-                  {EMAIL_ADDRESS}
+                  {product.email}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
@@ -954,7 +889,7 @@ function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">
-            © 2026 Na₂S₂O₃ Pro. All rights reserved.
+            © 2026 {product.chemicalFormula} Pro. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
@@ -998,16 +933,23 @@ function BackToTop() {
 
 /* ─── Main Page ─── */
 export default function Index() {
+  const { productSlug } = useParams();
+  const product = productSlug ? products[productSlug] : null;
+
+  if (!product) {
+    return <Navigate to="/sodium-thiosulfate" replace />;
+  }
+
   return (
-    <div className="min-h-screen bg-[#0A1628]">
-      <Navigation />
-      <Hero />
+    <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843] selection:text-[#0A1628]">
+      <Navigation product={product} />
+      <Hero product={product} />
       <TrustBar />
-      <ProductSpecs />
-      <Applications />
-      <WhyChooseUs />
-      <InquiryForm />
-      <Footer />
+      <ProductSpecs product={product} />
+      <Applications product={product} />
+      <WhyChooseUs product={product} />
+      <InquiryForm product={product} />
+      <Footer product={product} />
       <BackToTop />
     </div>
   );
