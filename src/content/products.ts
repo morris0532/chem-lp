@@ -9,6 +9,11 @@ export interface ProductData {
     hero: string;
     product: string;
   };
+  seo: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
   specifications: { label: string; value: string }[];
   applications: {
     title: string;
@@ -29,6 +34,11 @@ export const products: Record<string, ProductData> = {
     images: {
       hero: "/images/hero-banner.webp",
       product: "/images/product-sodium.webp",
+    },
+    seo: {
+      title: "Sodium Thiosulfate Manufacturer | High Purity Na2S2O3 Factory Direct",
+      description: "Leading Sodium Thiosulfate manufacturer providing 99%+ purity Na2S2O3 for water treatment, mining, and pharmaceutical industries. ISO certified, global shipping, factory direct pricing.",
+      keywords: "Sodium Thiosulfate manufacturer, Na2S2O3 factory, high purity sodium thiosulfate, water treatment chemicals, mining reagents, sodium thiosulfate supplier",
     },
     specifications: [
       { label: "Appearance", value: "Colorless Monoclinic Crystal" },
@@ -75,6 +85,11 @@ export const products: Record<string, ProductData> = {
     images: {
       hero: "/images/hero-banner.webp",
       product: "/images/product-sodium.webp",
+    },
+    seo: {
+      title: "Oxalic Acid Manufacturer | Industrial Grade C2H2O4 Supplier",
+      description: "Premium Oxalic Acid manufacturer offering high-purity C2H2O4 for rust removal, textile dyeing, and rare earth processing. Global logistics, competitive bulk pricing.",
+      keywords: "Oxalic Acid manufacturer, C2H2O4 supplier, industrial oxalic acid, rust removal chemicals, textile bleaching agent, oxalic acid factory",
     },
     specifications: [
       { label: "Appearance", value: "White Crystalline Powder" },

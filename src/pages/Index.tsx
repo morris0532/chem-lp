@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -942,6 +943,47 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843] selection:text-[#0A1628]">
+      <Helmet>
+        <title>{product.seo.title}</title>
+        <meta name="description" content={product.seo.description} />
+        <meta name="keywords" content={product.seo.keywords} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={product.seo.title} />
+        <meta property="og:description" content={product.seo.description} />
+        <meta property="og:image" content={product.images.product} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.seo.title} />
+        <meta name="twitter:description" content={product.seo.description} />
+        <meta name="twitter:image" content={product.images.product} />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": product.name,
+            "image": product.images.product,
+            "description": product.seo.description,
+            "brand": {
+              "@type": "Brand",
+              "name": `${product.chemicalFormula} Pro`
+            },
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
+
       <Navigation product={product} />
       <Hero product={product} />
       <TrustBar />
