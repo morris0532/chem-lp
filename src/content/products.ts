@@ -5,7 +5,7 @@ export interface ProductData {
   subtitle: string;
   heroTitle: string;
   email: string;
-  capacity: string;
+  supplyAbility: string;
   images: {
     hero: string;
     product: string;
@@ -32,15 +32,15 @@ export const products: Record<string, ProductData> = {
     heroTitle: "Premium Sodium Thiosulfate Manufacturer",
     subtitle: "Direct from China Factory | 99%+ Purity | Bulk Wholesale Pricing",
     email: "sales@na2s2o3pro.com",
-    capacity: "400,000 MT+",
+    supplyAbility: "400,000 MT+",
     images: {
       hero: "/images/hero-banner.webp",
       product: "/images/product-sodium.webp",
     },
     seo: {
-      title: "Sodium Thiosulfate Manufacturer China | 400,000MT Annual Capacity",
-      description: "Top China Sodium Thiosulfate manufacturer with 400,000 MT annual capacity. High purity Na2S2O3 factory direct for global bulk supply. ISO certified.",
-      keywords: "Sodium Thiosulfate China supplier, bulk sodium thiosulfate, Na2S2O3 manufacturer, China chemical factory, 400000MT capacity",
+      title: "Sodium Thiosulfate Manufacturer China | 400,000MT Annual Supply Ability",
+      description: "Top China Sodium Thiosulfate manufacturer with 400,000 MT annual supply ability. High purity Na2S2O3 factory direct for global bulk supply. ISO certified.",
+      keywords: "Sodium Thiosulfate China supplier, bulk sodium thiosulfate, Na2S2O3 manufacturer, China chemical factory, 400000MT supply ability",
     },
     specifications: [
       { label: "Appearance", value: "Colorless Monoclinic Crystal" },
@@ -84,14 +84,14 @@ export const products: Record<string, ProductData> = {
     heroTitle: "Premium Oxalic Acid Manufacturer",
     subtitle: "China Leading Supplier | Industrial Grade | Large Scale Production",
     email: "sales@na2s2o3pro.com",
-    capacity: "100,000 MT+",
+    supplyAbility: "100,000 MT+",
     images: {
       hero: "/images/hero-banner.webp",
       product: "/images/product-sodium.webp",
     },
     seo: {
       title: "Oxalic Acid Manufacturer China | Bulk C2H2O4 Supplier 100,000MT",
-      description: "Leading China Oxalic Acid manufacturer with 100,000 MT annual capacity. High-purity C2H2O4 for industrial bulk supply. Competitive factory pricing.",
+      description: "Leading China Oxalic Acid manufacturer with 100,000 MT annual supply ability. High-purity C2H2O4 for industrial bulk supply. Competitive factory pricing.",
       keywords: "Oxalic Acid China, bulk oxalic acid supplier, C2H2O4 manufacturer, industrial grade oxalic acid, China chemical factory",
     },
     specifications: [

@@ -161,7 +161,7 @@ function Navigation({ product }: { product: any }) {
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
   const stats = [
-    { value: product.capacity, label: "Annual Capacity" },
+    { value: product.supplyAbility, label: "Annual Supply Ability" },
     { value: "20+", label: "Years Experience" },
     { value: "50+", label: "Countries Served" },
     { value: "99%+", label: "Purity Guaranteed" },
@@ -191,7 +191,7 @@ function Hero({ product }: { product: any }) {
           <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-8 border border-[#D4A843]/30">
             <div className="w-2 h-2 rounded-full bg-[#D4A843] animate-pulse" />
             <span className="text-sm font-bold gold-text uppercase tracking-wider">
-              Top-Tier China Supplier | {product.capacity} Capacity
+              Top-Tier China Supplier | {product.supplyAbility} Supply Ability
             </span>
           </div>
         </div>
@@ -306,7 +306,7 @@ function ProductSpecs({ product }: { product: any }) {
               Premium <span className="gold-text">Product Standards</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our factory-direct {product.name} meets the highest industry standards for purity and bulk consistency.
+              Our factory-direct {product.name} meets the highest industry standards for purity and bulk supply consistency.
             </p>
           </div>
         </ScrollRevealSection>
@@ -391,7 +391,7 @@ function Applications({ product }: { product: any }) {
               Powering <span className="gold-text">Critical Industries</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Supporting high-volume industrial needs with consistent quality and reliable supply.
+              Supporting high-volume industrial needs with consistent quality and reliable supply ability.
             </p>
           </div>
         </ScrollRevealSection>
@@ -440,7 +440,7 @@ function WhyChooseUs({ product }: { product: any }) {
     {
       icon: Factory,
       title: "Direct China Factory",
-      desc: `Eliminate middlemen. Benefit from our ${product.capacity} annual capacity and 20+ years of manufacturing expertise for the best wholesale pricing.`,
+      desc: `Eliminate middlemen. Benefit from our ${product.supplyAbility} annual supply ability and 20+ years of manufacturing expertise for the best wholesale pricing.`,
     },
     {
       icon: ShieldCheck,
@@ -472,7 +472,7 @@ function WhyChooseUs({ product }: { product: any }) {
               <span className="gold-text">Supply Chain Partner</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Leverage our massive production scale and logistical expertise for your industrial requirements.
+              Leverage our massive production scale and logistical expertise for your industrial supply ability requirements.
             </p>
           </div>
         </ScrollRevealSection>
@@ -516,7 +516,7 @@ function WhyChooseUs({ product }: { product: any }) {
             </div>
             <div>
               <Award className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">Stable Supply</h4>
+              <h4 className="text-white font-semibold mb-1">Stable Supply Ability</h4>
               <p className="text-slate-400 text-sm">
                 Reliable long-term contracts for year-round industrial stability
               </p>
@@ -822,7 +822,7 @@ function Footer({ product }: { product: any }) {
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Leading China manufacturer of premium {product.name} with {product.capacity} annual capacity.
+              Leading China manufacturer of premium {product.name} with {product.supplyAbility} annual supply ability.
               Serving global industries for 20+ years.
             </p>
           </div>
