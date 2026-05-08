@@ -27,6 +27,8 @@ import {
   Award,
   FileCheck,
   Truck,
+  Building2,
+  PackageCheck,
 } from "lucide-react";
 import { products } from "@/content/products";
 
@@ -159,10 +161,10 @@ function Navigation({ product }: { product: any }) {
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
   const stats = [
+    { value: product.capacity, label: "Annual Capacity" },
     { value: "20+", label: "Years Experience" },
     { value: "50+", label: "Countries Served" },
     { value: "99%+", label: "Purity Guaranteed" },
-    { value: "ISO", label: "Certified Factory" },
   ];
 
   return (
@@ -186,10 +188,10 @@ function Hero({ product }: { product: any }) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16">
         <div className="animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-8">
+          <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-8 border border-[#D4A843]/30">
             <div className="w-2 h-2 rounded-full bg-[#D4A843] animate-pulse" />
-            <span className="text-sm text-slate-300">
-              Trusted by 500+ Companies Worldwide
+            <span className="text-sm font-bold gold-text uppercase tracking-wider">
+              Top-Tier China Supplier | {product.capacity} Capacity
             </span>
           </div>
         </div>
@@ -204,7 +206,7 @@ function Hero({ product }: { product: any }) {
           {product.subtitle}
           <br />
           <span className="text-slate-400">
-            ISO 9001 · GMP · NSF Certified
+            ISO 9001 · GMP · NSF Certified · Global Bulk Supply
           </span>
         </p>
 
@@ -214,7 +216,7 @@ function Hero({ product }: { product: any }) {
               size="lg"
               className="gold-shimmer text-[#0A1628] font-bold text-lg px-8 py-6 rounded-xl shadow-2xl shadow-[#D4A843]/30 hover:shadow-[#D4A843]/50 transition-shadow animate-pulse-gold"
             >
-              Get Free Quote
+              Get Bulk Quote
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
@@ -224,8 +226,8 @@ function Hero({ product }: { product: any }) {
               variant="outline"
               className="border-[#D4A843]/40 text-[#D4A843] hover:bg-[#D4A843]/10 font-semibold text-lg px-8 py-6 rounded-xl"
             >
-              <FileCheck className="mr-2 h-5 w-5" />
-              View Specifications
+              <PackageCheck className="mr-2 h-5 w-5" />
+              Wholesale Specs
             </Button>
           </a>
         </div>
@@ -259,10 +261,10 @@ function Hero({ product }: { product: any }) {
 /* ─── Trust Bar ─── */
 function TrustBar() {
   const certs = [
-    { icon: ShieldCheck, label: "ISO 9001:2015" },
-    { icon: Award, label: "GMP Certified" },
-    { icon: FileCheck, label: "NSF International" },
-    { icon: CheckCircle2, label: "REACH Compliant" },
+    { icon: Building2, label: "Direct China Factory" },
+    { icon: ShieldCheck, label: "ISO 9001 Certified" },
+    { icon: Globe, label: "Global Bulk Logistics" },
+    { icon: Award, label: "20+ Years Expertise" },
   ];
 
   return (
@@ -298,13 +300,13 @@ function ProductSpecs({ product }: { product: any }) {
         <ScrollRevealSection>
           <div className="text-center mb-16">
             <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Product Specifications
+              Bulk Supply Specifications
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
               Premium <span className="gold-text">Product Standards</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our products meet the highest industry standards for purity and consistency.
+              Our factory-direct {product.name} meets the highest industry standards for purity and bulk consistency.
             </p>
           </div>
         </ScrollRevealSection>
@@ -327,10 +329,10 @@ function ProductSpecs({ product }: { product: any }) {
                 <div>
                   <div className="flex items-center gap-3 mb-8">
                     <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider border border-[#D4A843]/20">
-                      Premium Grade
+                      Bulk Wholesale
                     </span>
                     <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider border border-emerald-500/20">
-                      In Stock
+                      Ready to Ship
                     </span>
                   </div>
                   <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">
@@ -359,7 +361,7 @@ function ProductSpecs({ product }: { product: any }) {
                 <div className="mt-12 flex flex-col sm:flex-row gap-4">
                   <a href="#contact" className="flex-1">
                     <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10 hover:shadow-[#D4A843]/20 transition-all">
-                      Request Full COA
+                      Request Bulk Price
                     </Button>
                   </a>
                   <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 py-7 rounded-2xl text-lg">
@@ -383,13 +385,13 @@ function Applications({ product }: { product: any }) {
         <ScrollRevealSection>
           <div className="text-center mb-16">
             <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Industry Applications
+              Global Supply Use Cases
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
               Powering <span className="gold-text">Critical Industries</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our {product.name} delivers consistent performance across diverse industrial applications.
+              Supporting high-volume industrial needs with consistent quality and reliable supply.
             </p>
           </div>
         </ScrollRevealSection>
@@ -420,7 +422,7 @@ function Applications({ product }: { product: any }) {
                     href="#contact"
                     className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all mt-auto"
                   >
-                    Request Quote <ChevronRight className="h-4 w-4" />
+                    Get Bulk Quote <ChevronRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -437,23 +439,23 @@ function WhyChooseUs({ product }: { product: any }) {
   const features = [
     {
       icon: Factory,
-      title: "Factory Direct Pricing",
-      desc: "Eliminate middlemen. As a manufacturer with 20+ years experience, we offer the most competitive pricing in the market with transparent cost structure.",
+      title: "Direct China Factory",
+      desc: `Eliminate middlemen. Benefit from our ${product.capacity} annual capacity and 20+ years of manufacturing expertise for the best wholesale pricing.`,
     },
     {
       icon: ShieldCheck,
-      title: "99%+ Purity Guaranteed",
-      desc: "Every batch undergoes rigorous QC testing with full COA documentation. Our state-of-the-art production ensures consistent purity exceeding industry standards.",
+      title: "Bulk Quality Control",
+      desc: "Every container undergoes rigorous QC testing. We guarantee consistent purity across high-volume orders with full batch traceability.",
     },
     {
       icon: Globe,
-      title: "Global Shipping & Logistics",
-      desc: "Delivered to 50+ countries with reliable logistics partnerships. FOB, CIF, DDP terms available. 20ft/40ft container loading optimization.",
+      title: "Port-to-Door Logistics",
+      desc: "Direct export from major China ports (Qingdao, Tianjin, Shanghai). Reliable global shipping with FOB, CIF, and DDP options available.",
     },
     {
       icon: FlaskConical,
-      title: "Free Samples Available",
-      desc: "Test before you commit. We provide free samples with COA/SDS documentation so you can verify quality before placing bulk orders.",
+      title: "Wholesale Support",
+      desc: "Dedicated account managers for large-scale contracts. We provide free samples and full documentation for seamless import processes.",
     },
   ];
 
@@ -463,15 +465,14 @@ function WhyChooseUs({ product }: { product: any }) {
         <ScrollRevealSection>
           <div className="text-center mb-16">
             <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Why Choose Us
+              The China Advantage
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Your Trusted{" "}
-              <span className="gold-text">Manufacturing Partner</span>
+              Your Strategic{" "}
+              <span className="gold-text">Supply Chain Partner</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Two decades of expertise delivering premium {product.name} to
-              industries worldwide.
+              Leverage our massive production scale and logistical expertise for your industrial requirements.
             </p>
           </div>
         </ScrollRevealSection>
@@ -496,28 +497,28 @@ function WhyChooseUs({ product }: { product: any }) {
         </div>
 
         <ScrollRevealSection delay={200}>
-          <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center">
+          <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center border border-[#D4A843]/20">
             <div>
               <Truck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">Fast Lead Time</h4>
+              <h4 className="text-white font-semibold mb-1">Large Scale Logistics</h4>
               <p className="text-slate-400 text-sm">
-                7-15 days production, 3-5 days sample dispatch
+                Optimized 20ft/40ft container loading for maximum cost efficiency
               </p>
             </div>
             <div>
               <FileCheck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
               <h4 className="text-white font-semibold mb-1">
-                Full Documentation
+                Global Compliance
               </h4>
               <p className="text-slate-400 text-sm">
-                COA, SDS, DMF, REACH — all certificates available
+                REACH, DMF, and full international chemical safety documentation
               </p>
             </div>
             <div>
               <Award className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">Flexible MOQ</h4>
+              <h4 className="text-white font-semibold mb-1">Stable Supply</h4>
               <p className="text-slate-400 text-sm">
-                From 1MT trial orders to 1000MT+ annual contracts
+                Reliable long-term contracts for year-round industrial stability
               </p>
             </div>
           </div>
@@ -558,14 +559,14 @@ function InquiryForm({ product }: { product: any }) {
         <ScrollRevealSection>
           <div className="text-center mb-16">
             <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Get In Touch
+              Bulk Inquiry
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Request a <span className="gold-text">Free Quote</span>
+              Request a <span className="gold-text">Wholesale Quote</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Fill out the form below for {product.name} and our team will respond within 24 hours
-              with competitive pricing and full documentation.
+              Get direct factory pricing for your bulk {product.name} requirements.
+              Our export team will provide a comprehensive quote within 24 hours.
             </p>
           </div>
         </ScrollRevealSection>
@@ -576,7 +577,7 @@ function InquiryForm({ product }: { product: any }) {
             <div className="space-y-6">
               <div className="glass rounded-2xl p-6">
                 <h3 className="text-xl font-bold text-white mb-6">
-                  Contact Information
+                  Export Sales Office
                 </h3>
                 <div className="space-y-5">
                   <div className="flex items-start gap-4">
@@ -584,7 +585,7 @@ function InquiryForm({ product }: { product: any }) {
                       <Mail className="h-5 w-5 text-[#D4A843]" />
                     </div>
                     <div>
-                      <p className="text-slate-400 text-sm">Email</p>
+                      <p className="text-slate-400 text-sm">Bulk Sales Email</p>
                       <a
                         href={`mailto:${product.email}`}
                         className="text-white font-medium hover:text-[#D4A843] transition-colors"
@@ -598,7 +599,7 @@ function InquiryForm({ product }: { product: any }) {
                       <Phone className="h-5 w-5 text-[#D4A843]" />
                     </div>
                     <div>
-                      <p className="text-slate-400 text-sm">Phone</p>
+                      <p className="text-slate-400 text-sm">Direct Line</p>
                       <p className="text-white font-medium">
                         +86 400-888-8888
                       </p>
@@ -609,27 +610,27 @@ function InquiryForm({ product }: { product: any }) {
                       <MapPin className="h-5 w-5 text-[#D4A843]" />
                     </div>
                     <div>
-                      <p className="text-slate-400 text-sm">Address</p>
+                      <p className="text-slate-400 text-sm">Factory Location</p>
                       <p className="text-white font-medium">
                         Chemical Industrial Park,
                         <br />
-                        Shandong, China 250000
+                        Shandong, China
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="glass rounded-2xl p-6">
+              <div className="glass rounded-2xl p-6 border border-[#D4A843]/20">
                 <h4 className="text-white font-semibold mb-3">
-                  What You'll Receive
+                  Wholesale Benefits
                 </h4>
                 <ul className="space-y-2">
                   {[
-                    "Competitive factory pricing",
-                    "Full COA & SDS documentation",
-                    "Free sample arrangement",
-                    "Shipping cost estimate",
+                    "Direct factory wholesale pricing",
+                    "Tiered volume discounts",
+                    "Custom packaging options",
+                    "Dedicated logistics support",
                   ].map((item, i) => (
                     <li
                       key={i}
@@ -656,7 +657,7 @@ function InquiryForm({ product }: { product: any }) {
                     Inquiry Submitted!
                   </h3>
                   <p className="text-slate-400 mb-6">
-                    Thank you! We'll get back to you soon. Our team will contact
+                    Thank you! Our bulk export team will contact
                     you within 24 hours with a detailed quotation.
                   </p>
                   <Button
@@ -753,7 +754,10 @@ function InquiryForm({ product }: { product: any }) {
                         </SelectTrigger>
                         <SelectContent className="bg-[#132042] border-white/10">
                           <SelectItem value="Pentahydrate">
-                            Pentahydrate
+                            Standard Industrial
+                          </SelectItem>
+                          <SelectItem value="Premium">
+                            Premium Grade
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -767,21 +771,21 @@ function InquiryForm({ product }: { product: any }) {
                         value={form.quantity}
                         onChange={handleChange}
                         required
-                        placeholder="e.g. 20 MT / month"
+                        placeholder="e.g. 100 MT / month"
                         className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="text-sm text-slate-300 mb-1.5 block">
-                      Message
+                      Bulk Requirements
                     </label>
                     <Textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
                       rows={4}
-                      placeholder="Tell us about your requirements, application, delivery destination, etc."
+                      placeholder="Tell us about your annual volume, target price, and port of destination..."
                       className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20 resize-none"
                     />
                   </div>
@@ -789,7 +793,7 @@ function InquiryForm({ product }: { product: any }) {
                     type="submit"
                     className="w-full gold-gradient text-[#0A1628] font-bold text-lg py-6 rounded-xl shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
                   >
-                    Submit Inquiry
+                    Request Bulk Quote
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </form>
@@ -818,19 +822,19 @@ function Footer({ product }: { product: any }) {
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Leading manufacturer of premium {product.name} with 20+ years
-              of experience serving global industries.
+              Leading China manufacturer of premium {product.name} with {product.capacity} annual capacity.
+              Serving global industries for 20+ years.
             </p>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Products</h4>
+            <h4 className="text-white font-semibold mb-4">Bulk Supply</h4>
             <ul className="space-y-2">
               {[
-                "Pentahydrate Grade",
-                "Pharmaceutical Grade",
-                "Industrial Grade",
-                "Custom Specifications",
+                "Container Load (FCL)",
+                "Bulk Shipments",
+                "OEM Packaging",
+                "Long-term Contracts",
               ].map((item, i) => (
                 <li key={i}>
                   <a
@@ -845,14 +849,14 @@ function Footer({ product }: { product: any }) {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Certifications</h4>
+            <h4 className="text-white font-semibold mb-4">Compliance</h4>
             <ul className="space-y-2">
               {[
-                "ISO 9001:2015",
-                "GMP Certified",
-                "NSF International",
+                "ISO 9001 Certified",
+                "China Export License",
                 "REACH Compliant",
-                "Halal Certified",
+                "SDS/MSDS Provided",
+                "Third-party Inspection",
               ].map((item, i) => (
                 <li key={i}>
                   <span className="text-slate-400 text-sm flex items-center gap-2">
@@ -865,7 +869,7 @@ function Footer({ product }: { product: any }) {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-white font-semibold mb-4">China Office</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Mail className="h-4 w-4 text-[#D4A843]" />
@@ -882,7 +886,7 @@ function Footer({ product }: { product: any }) {
               </li>
               <li className="flex items-start gap-3 text-slate-400 text-sm">
                 <MapPin className="h-4 w-4 text-[#D4A843] mt-0.5" />
-                Chemical Industrial Park, Shandong, China
+                Industrial Park, Shandong, China
               </li>
             </ul>
           </div>
@@ -890,7 +894,7 @@ function Footer({ product }: { product: any }) {
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">
-            © 2026 {product.chemicalFormula} Pro. All rights reserved.
+            © 2026 {product.chemicalFormula} Pro | Top China Supplier. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
