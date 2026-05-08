@@ -29,6 +29,9 @@ import {
   Truck,
   Building2,
   PackageCheck,
+  Zap,
+  Box,
+  BadgeCheck,
 } from "lucide-react";
 import { products } from "@/content/products";
 
@@ -161,10 +164,10 @@ function Navigation({ product }: { product: any }) {
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
   const stats = [
-    { value: product.supplyAbility, label: "Annual Supply Ability" },
+    { value: "99.6%+", label: "Ultra High Purity" },
     { value: "20+", label: "Years Experience" },
     { value: "50+", label: "Countries Served" },
-    { value: "99%+", label: "Purity Guaranteed" },
+    { value: "24h", label: "Fast Response" },
   ];
 
   return (
@@ -191,7 +194,7 @@ function Hero({ product }: { product: any }) {
           <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-8 border border-[#D4A843]/30">
             <div className="w-2 h-2 rounded-full bg-[#D4A843] animate-pulse" />
             <span className="text-sm font-bold gold-text uppercase tracking-wider">
-              Top-Tier China Supplier | {product.supplyAbility} Supply Ability
+              Top-Tier China Supplier | {product.supplyAbility} Capacity
             </span>
           </div>
         </div>
@@ -206,7 +209,7 @@ function Hero({ product }: { product: any }) {
           {product.subtitle}
           <br />
           <span className="text-slate-400">
-            ISO 9001 · GMP · NSF Certified · Global Bulk Supply
+            Bulk Wholesale · Global Logistics · Factory Direct Supply
           </span>
         </p>
 
@@ -232,16 +235,16 @@ function Hero({ product }: { product: any }) {
           </a>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto animate-fade-in-up animation-delay-500">
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="glass rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300"
+              className="glass rounded-xl p-6 text-center hover:bg-white/10 transition-all duration-300 border border-white/5"
             >
-              <div className="text-2xl sm:text-3xl font-bold gold-text">
+              <div className="text-2xl sm:text-4xl font-bold gold-text">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm text-slate-400 mt-1">
+              <div className="text-xs sm:text-sm text-slate-400 mt-2 font-medium tracking-wide uppercase">
                 {stat.label}
               </div>
             </div>
@@ -262,7 +265,7 @@ function Hero({ product }: { product: any }) {
 function TrustBar() {
   const certs = [
     { icon: Building2, label: "Direct China Factory" },
-    { icon: ShieldCheck, label: "ISO 9001 Certified" },
+    { icon: Box, label: "Custom Packaging" },
     { icon: Globe, label: "Global Bulk Logistics" },
     { icon: Award, label: "20+ Years Expertise" },
   ];
@@ -443,8 +446,8 @@ function WhyChooseUs({ product }: { product: any }) {
       desc: `Eliminate middlemen. Benefit from our ${product.supplyAbility} annual supply ability and 20+ years of manufacturing expertise for the best wholesale pricing.`,
     },
     {
-      icon: ShieldCheck,
-      title: "Bulk Quality Control",
+      icon: BadgeCheck,
+      title: "Premium Quality Control",
       desc: "Every container undergoes rigorous QC testing. We guarantee consistent purity across high-volume orders with full batch traceability.",
     },
     {
@@ -454,7 +457,7 @@ function WhyChooseUs({ product }: { product: any }) {
     },
     {
       icon: FlaskConical,
-      title: "Wholesale Support",
+      title: "Free Sample Support",
       desc: "Dedicated account managers for large-scale contracts. We provide free samples and full documentation for seamless import processes.",
     },
   ];
@@ -849,14 +852,14 @@ function Footer({ product }: { product: any }) {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Compliance</h4>
+            <h4 className="text-white font-semibold mb-4">Support</h4>
             <ul className="space-y-2">
               {[
-                "ISO 9001 Certified",
                 "China Export License",
                 "REACH Compliant",
                 "SDS/MSDS Provided",
                 "Third-party Inspection",
+                "Free Sample Support",
               ].map((item, i) => (
                 <li key={i}>
                   <span className="text-slate-400 text-sm flex items-center gap-2">

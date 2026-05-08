@@ -39,7 +39,7 @@ export const products: Record<string, ProductData> = {
     },
     seo: {
       title: "Sodium Thiosulfate Manufacturer China | 400,000MT Annual Supply Ability",
-      description: "Top China Sodium Thiosulfate manufacturer with 400,000 MT annual supply ability. High purity Na2S2O3 factory direct for global bulk supply. ISO certified.",
+      description: "Top China Sodium Thiosulfate manufacturer with 400,000 MT annual supply ability. High purity Na2S2O3 factory direct for global bulk supply.",
       keywords: "Sodium Thiosulfate China supplier, bulk sodium thiosulfate, Na2S2O3 manufacturer, China chemical factory, 400000MT supply ability",
     },
     specifications: [
@@ -66,7 +66,7 @@ export const products: Record<string, ProductData> = {
       {
         tag: "Medical Grade",
         title: "Pharmaceutical",
-        desc: "Medical-grade sodium thiosulfate used as a cyanide poisoning antidote and in chemotherapy support. Meets USP/EP pharmacopeia standards with full DMF documentation.",
+        desc: "Medical-grade sodium thiosulfate used as a cyanide poisoning antidote and in chemotherapy support. Meets international pharmacopeia standards with full documentation.",
         image: "/images/app-pharma.webp",
       },
       {
