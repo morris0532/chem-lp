@@ -59,15 +59,15 @@ export const products: Record<string, ProductData> = {
       },
       {
         tag: "High Demand",
+        title: "Aquaculture & Pond Care",
+        desc: "Crucial for water quality management in shrimp and fish farming. Rapidly neutralizes harmful chlorine, stabilizes pH, and detoxifies heavy metals to ensure a healthy aquatic environment.",
+        image: "/images/app-aqua.webp",
+      },
+      {
+        tag: "Mining Grade",
         title: "Mining & Gold Leaching",
         desc: "Critical reagent in cyanide leaching processes for gold extraction. Acts as a lixiviant alternative and cyanide detoxification agent for environmentally responsible mining operations.",
         image: "/images/app-mining.webp",
-      },
-      {
-        tag: "Medical Grade",
-        title: "Pharmaceutical",
-        desc: "Medical-grade sodium thiosulfate used as a cyanide poisoning antidote and in chemotherapy support. Meets international pharmacopeia standards with full documentation.",
-        image: "/images/app-pharma.webp",
       },
       {
         tag: "Cost Effective",
@@ -122,10 +122,10 @@ export const products: Record<string, ProductData> = {
         image: "/images/app-mining.webp",
       },
       {
-        tag: "Pharmaceutical",
-        title: "Chemical Synthesis",
-        desc: "Key intermediate in the production of various antibiotics and other pharmaceutical compounds.",
-        image: "/images/app-pharma.webp",
+        tag: "Water Safety",
+        title: "Aquaculture & Pond Care",
+        desc: "Used for water treatment in aquaculture to maintain optimal conditions for aquatic life and control bacterial growth.",
+        image: "/images/app-aqua.webp",
       },
     ],
   },
