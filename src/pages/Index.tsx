@@ -830,8 +830,7 @@ function Footer({ product }: { product: any }) {
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Leading China manufacturer of premium {product.name} with {product.supplyAbility} annual supply ability.
-              Serving global industries for 20+ years.
+              Leading China manufacturer of premium {product.name} with {product.supplyAbility} annual supply ability. Serving global industries for 20+ years.
             </p>
           </div>
 
