@@ -20,6 +20,21 @@
 
       gtag('config', 'G-F9ET34L461');
     </script>
+    <!-- Event snippet for 联系人 conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-961686506/ykgCCO3YqKoDEOrXyMoD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
   </head>
 
   <body>

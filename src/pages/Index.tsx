@@ -553,6 +553,10 @@ function InquiryForm({ product }: { product: any }) {
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
+    // Google Ads Conversion Tracking
+    if (typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion();
+    }
     setSubmitted(true);
   }, []);
 
