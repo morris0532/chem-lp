@@ -539,7 +539,6 @@ function InquiryForm({ product }: { product: any }) {
     email: "",
     company: "",
     phone: "",
-    product_grade: "",
     quantity: "",
     message: "",
   });
@@ -702,7 +701,6 @@ function InquiryForm({ product }: { product: any }) {
                         email: "",
                         company: "",
                         phone: "",
-                        product_grade: "",
                         quantity: "",
                         message: "",
                       });
@@ -747,55 +745,31 @@ function InquiryForm({ product }: { product: any }) {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm text-slate-300 mb-1.5 block">
-                        Company <span className="text-red-400">*</span>
+                        Company
                       </label>
                       <Input
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        required
                         placeholder="Company Name"
                         className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
                       />
                     </div>
                     <div>
                       <label className="text-sm text-slate-300 mb-1.5 block">
-                        Phone
+                        Phone <span className="text-red-400">*</span>
                       </label>
                       <Input
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
+                        required
                         placeholder="+1 234 567 8900"
                         className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
                       />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Product Grade <span className="text-red-400">*</span>
-                      </label>
-                      <Select
-                        value={form.product_grade}
-                        onValueChange={(val) =>
-                          setForm((p) => ({ ...p, product_grade: val }))
-                        }
-                        required
-                      >
-                        <SelectTrigger className="bg-white/5 border-white/10 text-white focus:ring-[#D4A843]/20">
-                          <SelectValue placeholder="Select grade" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-[#132042] border-white/10">
-                          <SelectItem value="Pentahydrate">
-                            Standard Industrial
-                          </SelectItem>
-                          <SelectItem value="Premium">
-                            Premium Grade
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
                     <div>
                       <label className="text-sm text-slate-300 mb-1.5 block">
                         Quantity <span className="text-red-400">*</span>
