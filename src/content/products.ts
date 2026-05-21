@@ -134,7 +134,7 @@ export const products: Record<string, ProductData> = {
     chemicalFormula: "NaOH",
     cas: "1310-73-2",
     heroTitle: "Premium Caustic Soda Manufacturer",
-    subtitle: "Direct from China Factory | Industrial Grade | Bulk Wholesale Pricing",
+    subtitle: "Direct from China Factory | Pearls & Flakes Available | 99%+ Purity",
     email: "sales@causticsodarx.com",
     supplyAbility: "300,000 MT+",
     images: {
@@ -142,17 +142,17 @@ export const products: Record<string, ProductData> = {
       product: "/images/product-sodium.webp",
     },
     seo: {
-      title: "Caustic Soda (NaOH) Manufacturer China | 300,000MT Annual Supply Ability",
-      description: "Top China Caustic Soda manufacturer with 300,000 MT annual supply ability. High-purity NaOH (1310-73-2) factory direct for global bulk supply. Industrial & food grade available.",
-      keywords: "Caustic Soda China supplier, Sodium Hydroxide manufacturer, NaOH bulk supplier, CAS 1310-73-2, China chemical factory, 300000MT supply ability",
+      title: "Caustic Soda Pearls & Flakes Manufacturer China | 300,000MT Supply",
+      description: "Leading China Caustic Soda manufacturer supplying high-purity Pearls and Flakes. 300,000 MT annual capacity. Factory direct NaOH (1310-73-2) for global industrial bulk supply.",
+      keywords: "Caustic Soda Pearls, Caustic Soda Flakes, Sodium Hydroxide manufacturer China, NaOH bulk supplier, CAS 1310-73-2, 300000MT supply ability",
     },
     specifications: [
-      { label: "Appearance", value: "White Solid (Flakes/Pellets) or Liquid" },
-      { label: "Purity (Solid NaOH)", value: "≥ 99.0%" },
-      { label: "Purity (Liquid NaOH)", value: "50% ± 1%" },
-      { label: "Water Insoluble", value: "≤ 0.05%" },
-      { label: "Iron (Fe)", value: "≤ 0.002%" },
-      { label: "Chloride (Cl)", value: "≤ 0.05%" },
+      { label: "Available Forms", value: "Pearls (Beads) & Flakes" },
+      { label: "Purity (NaOH)", value: "≥ 99.0% (Solid) / 50% (Liquid)" },
+      { label: "Particle Size (Pearls)", value: "0.5mm - 1.5mm (Uniform)" },
+      { label: "Na₂CO₃ Content", value: "≤ 0.5%" },
+      { label: "NaCl Content", value: "≤ 0.03%" },
+      { label: "Iron (Fe)", value: "≤ 50 ppm" },
     ],
     applications: [
       {
