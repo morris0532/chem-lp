@@ -31,7 +31,7 @@ export const products: Record<string, ProductData> = {
     cas: "7772-98-7",
     heroTitle: "Premium Sodium Thiosulfate Manufacturer",
     subtitle: "Direct from China Factory | 99%+ Purity | Bulk Wholesale Pricing",
-    email: "sales@na2s2o3pro.com",
+    email: "sales@sinopeakchem.com",
     supplyAbility: "400,000 MT+",
     images: {
       hero: "/images/hero-banner.webp",
@@ -83,7 +83,7 @@ export const products: Record<string, ProductData> = {
     cas: "144-62-7",
     heroTitle: "Premium Oxalic Acid Manufacturer",
     subtitle: "China Leading Supplier | Industrial Grade | Large Scale Production",
-    email: "sales@na2s2o3pro.com",
+    email: "sales@sinopeakchem.com",
     supplyAbility: "100,000 MT+",
     images: {
       hero: "/images/hero-banner.webp",
@@ -135,7 +135,7 @@ export const products: Record<string, ProductData> = {
     cas: "1310-73-2",
     heroTitle: "Premium Caustic Soda Manufacturer",
     subtitle: "Direct from China Factory | Pearls & Flakes Available | 99%+ Purity",
-    email: "sales@causticsodarx.com",
+    email: "sales@sinopeakchem.com",
     supplyAbility: "300,000 MT+",
     images: {
       hero: "/images/hero-banner.webp",

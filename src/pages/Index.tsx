@@ -737,7 +737,7 @@ function InquiryForm({ product }: { product: any }) {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        placeholder="john@company.com"
+                        placeholder="john@sinopeakchem.com"
                         className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
                       />
                     </div>
