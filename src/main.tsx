@@ -2,7 +2,11 @@ import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
-import { loadRuntimeConfig } from './lib/config.ts';
+import { loadRuntimeConfig, getAPIBaseURL } from './lib/config.ts';
+
+if (typeof window !== 'undefined') {
+  (window as any).getAPIBaseURL = getAPIBaseURL;
+}
 
 // Load runtime configuration before rendering the app
 async function initializeApp() {
