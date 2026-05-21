@@ -551,14 +551,36 @@ function InquiryForm({ product }: { product: any }) {
     []
   );
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    // Google Ads Conversion Tracking
-    if (typeof (window as any).gtag_report_conversion === 'function') {
-      (window as any).gtag_report_conversion();
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          product_name: product.name,
+        }),
+      });
+
+      if (response.ok) {
+        // Google Ads Conversion Tracking
+        if (typeof (window as any).gtag_report_conversion === 'function') {
+          (window as any).gtag_report_conversion();
+        }
+        setSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || 'Failed to send inquiry. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred. Please try again later.');
     }
-    setSubmitted(true);
-  }, []);
+  }, [form, product.name]);
 
   return (
     <section id="contact" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
