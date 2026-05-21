@@ -831,20 +831,16 @@ function Footer({ product }: { product: any }) {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Bulk Supply</h4>
+            <h4 className="text-white font-semibold mb-4">Our Products</h4>
             <ul className="space-y-2">
-              {[
-                "Container Load (FCL)",
-                "Bulk Shipments",
-                "OEM Packaging",
-                "Long-term Contracts",
-              ].map((item, i) => (
-                <li key={i}>
+              {Object.entries(products).map(([slug, p]) => (
+                <li key={slug}>
                   <a
-                    href="#products"
-                    className="text-slate-400 text-sm hover:text-[#D4A843] transition-colors"
+                    href={`/${slug}`}
+                    className="text-slate-400 text-sm hover:text-[#D4A843] transition-colors flex items-center gap-2"
                   >
-                    {item}
+                    <ChevronRight className="h-3 w-3 text-[#D4A843]" />
+                    {p.name}
                   </a>
                 </li>
               ))}
