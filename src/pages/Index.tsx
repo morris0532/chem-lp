@@ -34,6 +34,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import { products } from "@/content/products";
+import { getAPIBaseURL } from "@/lib/config";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -555,7 +556,11 @@ function InquiryForm({ product }: { product: any }) {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/send-email', {
+      const apiBaseUrl = getAPIBaseURL();
+      
+      console.log('Submitting form to:', `${apiBaseUrl}/api/send-email`);
+      
+      const response = await fetch(`${apiBaseUrl}/api/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
