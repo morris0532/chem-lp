@@ -1,9 +1,10 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
+import ProductIndex from "./pages/ProductIndex";
 
 const queryClient = new QueryClient();
 
@@ -21,8 +22,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ExternalRedirect />} />
+          <Route path="/all" element={<ProductIndex />} />
           <Route path="/:productSlug" element={<Index />} />
-          <Route path="*" element={<Navigate to="/sodium-thiosulfate" replace />} />
+          <Route path="*" element={<ProductIndex />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
