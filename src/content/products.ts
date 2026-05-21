@@ -129,4 +129,56 @@ export const products: Record<string, ProductData> = {
       },
     ],
   },
+  "caustic-soda-cas-1310-73-2": {
+    name: "Caustic Soda (Sodium Hydroxide)",
+    chemicalFormula: "NaOH",
+    cas: "1310-73-2",
+    heroTitle: "Premium Caustic Soda Manufacturer",
+    subtitle: "Direct from China Factory | Industrial Grade | Bulk Wholesale Pricing",
+    email: "sales@causticsodarx.com",
+    supplyAbility: "300,000 MT+",
+    images: {
+      hero: "/images/hero-banner.webp",
+      product: "/images/product-sodium.webp",
+    },
+    seo: {
+      title: "Caustic Soda (NaOH) Manufacturer China | 300,000MT Annual Supply Ability",
+      description: "Top China Caustic Soda manufacturer with 300,000 MT annual supply ability. High-purity NaOH (1310-73-2) factory direct for global bulk supply. Industrial & food grade available.",
+      keywords: "Caustic Soda China supplier, Sodium Hydroxide manufacturer, NaOH bulk supplier, CAS 1310-73-2, China chemical factory, 300000MT supply ability",
+    },
+    specifications: [
+      { label: "Appearance", value: "White Solid (Flakes/Pellets) or Liquid" },
+      { label: "Purity (Solid NaOH)", value: "≥ 99.0%" },
+      { label: "Purity (Liquid NaOH)", value: "50% ± 1%" },
+      { label: "Water Insoluble", value: "≤ 0.05%" },
+      { label: "Iron (Fe)", value: "≤ 0.002%" },
+      { label: "Chloride (Cl)", value: "≤ 0.05%" },
+    ],
+    applications: [
+      {
+        tag: "Largest Segment",
+        title: "Pulp & Paper Industry",
+        desc: "Essential in the Kraft process for wood pulping and bleaching. Caustic soda dissolves lignin and facilitates fiber separation for high-quality paper production.",
+        image: "/images/app-water.webp",
+      },
+      {
+        tag: "High Demand",
+        title: "Textile & Dyeing",
+        desc: "Critical for cotton mercerization to improve strength and luster. Used in dyeing processes and fabric treatment for superior textile quality and color fastness.",
+        image: "/images/app-textile.webp",
+      },
+      {
+        tag: "Mining Grade",
+        title: "Alumina Production",
+        desc: "Core reagent in the Bayer process for extracting alumina from bauxite ore. Enables efficient leaching and precipitation for aluminum metal production.",
+        image: "/images/app-mining.webp",
+      },
+      {
+        tag: "Versatile",
+        title: "Water Treatment & Chemical Manufacturing",
+        desc: "Used for pH adjustment, water softening, and heavy metal removal. Also serves as a key intermediate in soap, detergent, and specialty chemical production.",
+        image: "/images/app-pharma.webp",
+      },
+    ],
+  },
 };
