@@ -201,16 +201,16 @@ function Hero({ product }: { product: any }) {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-200 leading-tight">
-          {product.heroTitle.split(' Manufacturer')[0]}
+          {product.heroTitle.split(' Supply Solutions')[0]}
           <br />
-          <span className="gold-text">Manufacturer</span>
+          <span className="gold-text">Supply Solutions</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto animate-fade-in-up animation-delay-300">
           {product.subtitle}
           <br />
           <span className="text-slate-400">
-            Bulk Wholesale · Global Logistics · Factory Direct Supply
+            Bulk Wholesale · Global Logistics · Strategic Sourcing
           </span>
         </p>
 
@@ -265,7 +265,7 @@ function Hero({ product }: { product: any }) {
 /* ─── Trust Bar ─── */
 function TrustBar() {
   const certs = [
-    { icon: Building2, label: "Direct China Factory" },
+    { icon: Building2, label: "Strategic Sourcing" },
     { icon: Box, label: "Custom Packaging" },
     { icon: Globe, label: "Global Bulk Logistics" },
     { icon: Award, label: "20+ Years Expertise" },
@@ -310,7 +310,7 @@ function ProductSpecs({ product }: { product: any }) {
               Premium <span className="gold-text">Product Standards</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our factory-direct {product.name} meets the highest industry standards for purity and bulk supply consistency.
+              Our strategically sourced {product.name} meets the highest industry standards for purity and bulk supply consistency.
             </p>
           </div>
         </ScrollRevealSection>
@@ -442,9 +442,9 @@ function Applications({ product }: { product: any }) {
 function WhyChooseUs({ product }: { product: any }) {
   const features = [
     {
-      icon: Factory,
-      title: "Direct China Factory",
-      desc: `Eliminate middlemen. Benefit from our ${product.supplyAbility} annual supply ability and 20+ years of manufacturing expertise for the best wholesale pricing.`,
+      icon: Globe,
+      title: "Global Supply Solutions",
+      desc: `Streamlined procurement. Benefit from our ${product.supplyAbility} annual supply capacity and 20+ years of export expertise for the most competitive wholesale pricing.`,
     },
     {
       icon: BadgeCheck,
@@ -598,7 +598,7 @@ function InquiryForm({ product }: { product: any }) {
               Request a <span className="gold-text">Wholesale Quote</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Get direct factory pricing for your bulk {product.name} requirements.
+              Get competitive wholesale pricing for your bulk {product.name} requirements.
               Our export team will provide a comprehensive quote within 24 hours.
             </p>
           </div>
@@ -643,7 +643,7 @@ function InquiryForm({ product }: { product: any }) {
                       <MapPin className="h-5 w-5 text-[#D4A843]" />
                     </div>
                     <div>
-                      <p className="text-slate-400 text-sm">Factory Location</p>
+                      <p className="text-slate-400 text-sm">Logistics Hub</p>
                       <p className="text-white font-medium">
                         Chemical Industrial Park,
                         <br />
@@ -660,7 +660,7 @@ function InquiryForm({ product }: { product: any }) {
                 </h4>
                 <ul className="space-y-2">
                   {[
-                    "Direct factory wholesale pricing",
+                    "Competitive wholesale pricing",
                     "Tiered volume discounts",
                     "Custom packaging options",
                     "Dedicated logistics support",
@@ -830,7 +830,7 @@ function Footer({ product }: { product: any }) {
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Leading China manufacturer of premium {product.name} with {product.supplyAbility} annual supply ability. Serving global industries for 20+ years.
+              Leading China supplier of premium {product.name} with {product.supplyAbility} annual supply capacity. Providing global supply chain solutions for 20+ years.
             </p>
           </div>
 
