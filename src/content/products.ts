@@ -38,8 +38,8 @@ export const products: Record<string, ProductData> = {
       product: "/images/product-sodium.webp",
     },
     seo: {
-      title: "Sodium Thiosulfate Supply Solutions China | 400,000MT Annual Supply Ability",
-      description: "Top China Sodium Thiosulfate supplier with 400,000 MT annual supply ability. High purity Na2S2O3 integrated supply chain for global bulk supply.",
+      title: "Sinopeakchem: Sodium Thiosulfate Supply Solutions China | 400,000MT Annual Supply Ability",
+      description: "Sinopeakchem: Top China Sodium Thiosulfate supplier with 400,000 MT annual supply ability. High purity Na2S2O3 integrated supply chain for global bulk supply.",
       keywords: "Sodium Thiosulfate China supplier, bulk sodium thiosulfate, Na2S2O3 supplier, strategic chemical partner, 400000MT supply ability",
     },
     specifications: [
@@ -90,8 +90,8 @@ export const products: Record<string, ProductData> = {
       product: "/images/product-sodium.webp",
     },
     seo: {
-      title: "Oxalic Acid Supply Solutions China | Bulk C2H2O4 Supplier 100,000MT",
-      description: "Leading China Oxalic Acid supplier with 100,000 MT annual supply ability. High-purity C2H2O4 for industrial bulk supply. Competitive wholesale pricing.",
+      title: "Sinopeakchem: Oxalic Acid Supply Solutions China | Bulk C2H2O4 Supplier 100,000MT",
+      description: "Sinopeakchem: Leading China Oxalic Acid supplier with 100,000 MT annual supply ability. High-purity C2H2O4 for industrial bulk supply. Competitive wholesale pricing.",
       keywords: "Oxalic Acid China, bulk oxalic acid supplier, C2H2O4 supplier, industrial grade oxalic acid, strategic chemical partner",
     },
     specifications: [
@@ -142,8 +142,8 @@ export const products: Record<string, ProductData> = {
       product: "/images/product-sodium.webp",
     },
     seo: {
-      title: "Caustic Soda Pearls & Flakes Supply Solutions China | 300,000MT Supply",
-      description: "Leading China Caustic Soda supplier supplying high-purity Pearls and Flakes. 300,000 MT annual capacity. Integrated supply chain for global industrial bulk supply of NaOH (1310-73-2).",
+      title: "Sinopeakchem: Caustic Soda Pearls & Flakes Supply Solutions China | 300,000MT Supply",
+      description: "Sinopeakchem: Leading China Caustic Soda supplier supplying high-purity Pearls and Flakes. 300,000 MT annual capacity. Integrated supply chain for global industrial bulk supply of NaOH (1310-73-2).",
       keywords: "Caustic Soda Pearls, Caustic Soda Flakes, Sodium Hydroxide supplier China, NaOH bulk supplier, CAS 1310-73-2, 300000MT supply ability",
     },
     specifications: [
