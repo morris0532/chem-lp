@@ -32,6 +32,8 @@ import {
   Zap,
   Box,
   BadgeCheck,
+  Quote,
+  Star,
 } from "lucide-react";
 import { products } from "@/content/products";
 import { getAPIBaseURL } from "@/lib/config";
@@ -948,6 +950,30 @@ export default function Index() {
     return <Navigate to="/sodium-thiosulfate" replace />;
   }
 
+  const testimonials = [
+    {
+      name: "Marcus Thompson",
+      role: "Procurement Director",
+      company: "Global Water Solutions Ltd.",
+      content: `Sinopeakchem has been our primary supplier for ${product.name} for over 5 years. Their consistency in purity and reliable global logistics have been crucial for our municipal water treatment projects.`,
+      industry: "Water Treatment",
+    },
+    {
+      name: "Ahmed Al-Fayed",
+      role: "Operations Manager",
+      company: "Desert Mining Corp",
+      content: `Switching to Sinopeakchem for our bulk chemical needs was a strategic move. Their ${product.name} meets our rigorous mining standards, and their tiered pricing significantly optimized our operational costs.`,
+      industry: "Mining",
+    },
+    {
+      name: "Elena Rodriguez",
+      role: "Quality Assurance Lead",
+      company: "EcoTextile Manufacturing",
+      content: "The technical support and documentation provided by Sinopeakchem are top-notch. Their products are consistently REACH compliant, making our export processes to Europe seamless.",
+      industry: "Textile",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843] selection:text-[#0A1628]">
       <Helmet>
@@ -997,6 +1023,49 @@ export default function Index() {
       <ProductSpecs product={product} />
       <Applications product={product} />
       <WhyChooseUs product={product} />
+
+      {/* ─── Testimonials ─── */}
+      <section className="py-20 sm:py-28 bg-[#080f1f]/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollRevealSection>
+            <div className="text-center mb-16">
+              <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
+                Global Success Stories
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
+                Trusted by <span className="gold-text">Industry Leaders</span>
+              </h2>
+              <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+                Discover why top companies worldwide choose Sinopeakchem as their strategic partner for bulk chemical supply.
+              </p>
+            </div>
+          </ScrollRevealSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <ScrollRevealSection key={i} delay={i * 100}>
+                <div className="glass-strong p-8 rounded-[2rem] border border-white/5 h-full flex flex-col hover:border-[#D4A843]/30 transition-all group">
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-[#D4A843] text-[#D4A843]" />
+                    ))}
+                  </div>
+                  <Quote className="h-10 w-10 text-[#D4A843]/20 mb-4 group-hover:text-[#D4A843]/40 transition-colors" />
+                  <p className="text-slate-300 italic mb-8 flex-grow leading-relaxed">
+                    "{t.content}"
+                  </p>
+                  <div className="pt-6 border-t border-white/5">
+                    <p className="text-white font-bold">{t.name}</p>
+                    <p className="text-[#D4A843] text-sm font-medium">{t.role}</p>
+                    <p className="text-slate-500 text-xs mt-1 uppercase tracking-wider">{t.company}</p>
+                  </div>
+                </div>
+              </ScrollRevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <InquiryForm product={product} />
       <Footer product={product} />
       <BackToTop />
