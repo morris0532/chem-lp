@@ -42,7 +42,7 @@ export default async function handler(req: any, res: any) {
 
     // 2. Send Full Details to Admin
     const data = await resend.emails.send({
-      from: 'Sinopeakchem LP <info@sinopeakchem.com>',
+      from: 'Sinopeakchem <info@sinopeakchem.com>',
       to: 'info@sinopeakchem.com',
       replyTo: email,
       subject: `[LP Inquiry] ${product_name || 'Product'} from ${name}`,

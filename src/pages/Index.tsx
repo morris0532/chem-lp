@@ -107,7 +107,7 @@ function Navigation({ product }: { product: any }) {
             {product.chemicalFormula.substring(0, 2)}
           </div>
           <span className="text-xl font-bold text-white group-hover:text-[#D4A843] transition-colors">
-            {product.chemicalFormula} <span className="text-[#D4A843]">Pro</span>
+            Sinopeakchem
           </span>
         </a>
 
@@ -826,7 +826,7 @@ function Footer({ product }: { product: any }) {
                 {product.chemicalFormula.substring(0, 2)}
               </div>
               <span className="text-lg font-bold text-white">
-                {product.chemicalFormula} <span className="text-[#D4A843]">Pro</span>
+                Sinopeakchem
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -897,7 +897,7 @@ function Footer({ product }: { product: any }) {
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">
-            © 2026 {product.chemicalFormula} Pro | Top China Supplier. All rights reserved.
+            © 2026 Sinopeakchem | Top China Supplier. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
@@ -977,7 +977,7 @@ export default function Index() {
             "description": product.seo.description,
             "brand": {
               "@type": "Brand",
-              "name": `${product.chemicalFormula} Pro`
+              "name": "Sinopeakchem"
             },
             "offers": {
               "@type": "Offer",
