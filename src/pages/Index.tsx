@@ -125,7 +125,7 @@ function Navigation({ product }: { product: any }) {
           ))}
           <a href="#contact">
             <Button className="gold-gradient text-[#0A1628] font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-[#D4A843]/20">
-              Get Quote
+              Request a Quote
               <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </a>
@@ -154,7 +154,7 @@ function Navigation({ product }: { product: any }) {
             ))}
             <a href="#contact" onClick={() => setMobileOpen(false)}>
               <Button className="w-full gold-gradient text-[#0A1628] font-semibold">
-                Get Quote
+                Request a Quote
               </Button>
             </a>
           </div>
@@ -222,7 +222,7 @@ function Hero({ product }: { product: any }) {
               size="lg"
               className="gold-shimmer text-[#0A1628] font-bold text-lg px-8 py-6 rounded-xl shadow-2xl shadow-[#D4A843]/30 hover:shadow-[#D4A843]/50 transition-shadow animate-pulse-gold"
             >
-              Get Bulk Quote
+              Get Your Bulk Pricing
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
@@ -367,7 +367,7 @@ function ProductSpecs({ product }: { product: any }) {
                 <div className="mt-12 flex flex-col sm:flex-row gap-4">
                   <a href="#contact" className="flex-1">
                     <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10 hover:shadow-[#D4A843]/20 transition-all">
-                      Request Bulk Price
+                      Get Your Bulk Pricing
                     </Button>
                   </a>
                   <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 py-7 rounded-2xl text-lg">
@@ -428,7 +428,7 @@ function Applications({ product }: { product: any }) {
                     href="#contact"
                     className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all mt-auto"
                   >
-                    Get Bulk Quote <ChevronRight className="h-4 w-4" />
+                    Get Your Bulk Pricing <ChevronRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -594,10 +594,10 @@ function InquiryForm({ product }: { product: any }) {
         <ScrollRevealSection>
           <div className="text-center mb-16">
             <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Bulk Inquiry
+              Unlock Your Wholesale Advantage
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Request a <span className="gold-text">Wholesale Quote</span>
+              Request Your Wholesale Quote
             </h2>
             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
               Get competitive wholesale pricing for your bulk {product.name} requirements.
@@ -803,7 +803,7 @@ function InquiryForm({ product }: { product: any }) {
                     type="submit"
                     className="w-full gold-gradient text-[#0A1628] font-bold text-lg py-6 rounded-xl shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
                   >
-                    Request Bulk Quote
+                    Secure Your Bulk Pricing
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </form>
