@@ -47,6 +47,8 @@ import {
 import { products } from "@/content/products";
 import { getAPIBaseURL } from "@/lib/config";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ChatWidget } from "@/components/ChatWidget";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -956,7 +958,7 @@ function BackToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-8 left-8 z-40 w-12 h-12 rounded-full glass border-white/10 flex items-center justify-center text-[#D4A843] hover:bg-[#D4A843]/10 transition-all duration-300 ${
+      className={`fixed bottom-40 right-9 z-40 w-12 h-12 rounded-full glass border-white/10 flex items-center justify-center text-[#D4A843] hover:bg-[#D4A843]/10 transition-all duration-300 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
       }`}
     >
@@ -1041,6 +1043,8 @@ export default function Index() {
       <InquiryForm product={product} />
       <Footer product={product} />
       <FloatingCTA productName={product.name} />
+      <WhatsAppButton />
+      <ChatWidget />
       <BackToTop />
     </div>
   );
