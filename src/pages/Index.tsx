@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -34,6 +42,7 @@ import {
   BadgeCheck,
   Quote,
   Star,
+  Download,
 } from "lucide-react";
 import { products } from "@/content/products";
 import { getAPIBaseURL } from "@/lib/config";
@@ -298,6 +307,145 @@ function TrustBar() {
   );
 }
 
+/* ─── SDS Download Dialog ─── */
+function SDSDownloadDialog({ product }: { product: any }) {
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    },
+    []
+  );
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const apiBaseUrl = getAPIBaseURL();
+      
+      const response = await fetch(`${apiBaseUrl}/api/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          product_name: product.name,
+          subject: `SDS Download Request - ${product.name}`,
+          type: 'sds_download',
+        }),
+      });
+
+      if (response.ok) {
+        const sdsFileName = `${product.name.replace(/\s+/g, '-').toLowerCase()}-sds.pdf`;
+        const sdsPath = `/documents/${sdsFileName}`;
+        const link = document.createElement('a');
+        link.href = sdsPath;
+        link.download = sdsFileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        setSubmitted(true);
+        setTimeout(() => {
+          setOpen(false);
+          setSubmitted(false);
+          setForm({ name: "", email: "", company: "" });
+        }, 2000);
+      } else {
+        alert('Failed to process request. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred. Please try again later.');
+    }
+  }, [form, product.name]);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 py-7 rounded-2xl text-lg">
+          <Download className="mr-2 h-5 w-5" />
+          Download SDS
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="bg-[#0A1628] border-white/10 text-white">
+        <DialogHeader>
+          <DialogTitle className="text-white">Download SDS Document</DialogTitle>
+          <DialogDescription className="text-slate-400">
+            Please provide your information to download the Safety Data Sheet for {product.name}.
+          </DialogDescription>
+        </DialogHeader>
+        {submitted ? (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 rounded-full bg-[#D4A843]/10 flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="h-8 w-8 text-[#D4A843]" />
+            </div>
+            <p className="text-white font-semibold mb-2">Download Started!</p>
+            <p className="text-slate-400 text-sm">Your SDS document is being downloaded.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="text-sm text-slate-300 mb-1.5 block">
+                Full Name <span className="text-red-400">*</span>
+              </label>
+              <Input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                placeholder="John Smith"
+                className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-slate-300 mb-1.5 block">
+                Email <span className="text-red-400">*</span>
+              </label>
+              <Input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                placeholder="john@company.com"
+                className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-slate-300 mb-1.5 block">
+                Company
+              </label>
+              <Input
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="Company Name"
+                className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+              />
+            </div>
+            <Button
+              type="submit"
+              className="w-full gold-gradient text-[#0A1628] font-bold py-2 rounded-lg shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
+            >
+              Download SDS
+              <Download className="ml-2 h-4 w-4" />
+            </Button>
+          </form>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 /* ─── Product Specs ─── */
 function ProductSpecs({ product }: { product: any }) {
   return (
@@ -370,9 +518,7 @@ function ProductSpecs({ product }: { product: any }) {
                       Get Your Bulk Pricing
                     </Button>
                   </a>
-                  <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 py-7 rounded-2xl text-lg">
-                    Download SDS
-                  </Button>
+                  <SDSDownloadDialog product={product} />
                 </div>
               </div>
             </div>
