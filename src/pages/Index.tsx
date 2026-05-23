@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import { products } from "@/content/products";
 import { getAPIBaseURL } from "@/lib/config";
+import { FloatingCTA } from "@/components/FloatingCTA";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -422,22 +423,21 @@ function SDSDownloadDialog({ product }: { product: any }) {
             </div>
             <div>
               <label className="text-sm text-slate-300 mb-1.5 block">
-                Company
+                Company Name
               </label>
               <Input
                 name="company"
                 value={form.company}
                 onChange={handleChange}
-                placeholder="Company Name"
+                placeholder="Global Chemicals Inc."
                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
               />
             </div>
             <Button
               type="submit"
-              className="w-full gold-gradient text-[#0A1628] font-bold py-2 rounded-lg shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
+              className="w-full gold-gradient text-[#0A1628] font-bold py-6 rounded-xl mt-2"
             >
-              Download SDS
-              <Download className="ml-2 h-4 w-4" />
+              Start Download
             </Button>
           </form>
         )}
@@ -446,84 +446,80 @@ function SDSDownloadDialog({ product }: { product: any }) {
   );
 }
 
-/* ─── Product Specs ─── */
-function ProductSpecs({ product }: { product: any }) {
+/* ─── Product Details ─── */
+function ProductDetails({ product }: { product: any }) {
   return (
-    <section id="products" className="py-20 sm:py-28 relative z-10">
+    <section id="products" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollRevealSection>
-          <div className="text-center mb-16">
-            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Bulk Supply Specifications
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Premium <span className="gold-text">Product Standards</span>
-            </h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our strategically sourced {product.name} meets the highest industry standards for purity and bulk supply consistency.
-            </p>
-          </div>
-        </ScrollRevealSection>
-
-        <ScrollRevealSection delay={100}>
-          <div className="glass rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-            <div className="grid lg:grid-cols-2 items-stretch">
-              {/* Left Side: Image */}
-              <div className="relative group bg-[#080f1f]/50 p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#D4A843]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <img
-                  src={product.images.product}
-                  alt={product.name}
-                  className="relative z-10 w-full rounded-2xl shadow-2xl object-cover max-h-[500px] transition-transform duration-700 group-hover:scale-105"
-                />
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <ScrollRevealSection className="space-y-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4A843]/10 border border-[#D4A843]/20 mb-4">
+                <FlaskConical className="h-4 w-4 text-[#D4A843]" />
+                <span className="text-xs font-bold text-[#D4A843] uppercase tracking-widest">Premium Quality</span>
               </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+                Technical Specifications
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Our {product.name} is manufactured under strict quality control standards, ensuring consistent performance for industrial applications.
+              </p>
+            </div>
 
-              {/* Right Side: Specs */}
-              <div className="p-8 sm:p-12 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-8">
-                    <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider border border-[#D4A843]/20">
-                      Bulk Wholesale
-                    </span>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider border border-emerald-500/20">
-                      Ready to Ship
-                    </span>
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                    {product.name}
-                  </h3>
-                  <p className="text-[#D4A843] font-mono text-base mb-10 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#D4A843]" />
-                    {product.chemicalFormula} · CAS {product.cas}
-                  </p>
+            <div className="glass rounded-2xl overflow-hidden border-white/5 shadow-2xl">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-white/5">
+                    <th className="px-6 py-4 text-sm font-bold text-[#D4A843] uppercase tracking-wider">Property</th>
+                    <th className="px-6 py-4 text-sm font-bold text-[#D4A843] uppercase tracking-wider">Specification</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {product.specifications.map((spec: any, i: number) => (
+                    <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="px-6 py-4 text-slate-300 font-medium">{spec.label}</td>
+                      <td className="px-6 py-4 text-white font-semibold">{spec.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-                  <div className="space-y-5">
-                    {product.specifications.map((spec: any, i: number) => (
-                      <div
-                        key={i}
-                        className="flex justify-between py-3 border-b border-white/5 group/item"
-                      >
-                        <span className="text-slate-400 group-hover/item:text-[#D4A843] transition-colors">
-                          {spec.label}
-                        </span>
-                        <span className="text-white font-semibold">{spec.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#contact" className="flex-1">
+                <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10">
+                  Request Bulk Quote
+                </Button>
+              </a>
+              <SDSDownloadDialog product={product} />
+            </div>
+          </ScrollRevealSection>
 
-                <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                  <a href="#contact" className="flex-1">
-                    <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10 hover:shadow-[#D4A843]/20 transition-all">
-                      Get Your Bulk Pricing
-                    </Button>
-                  </a>
-                  <SDSDownloadDialog product={product} />
-                </div>
+          <ScrollRevealSection delay={200} className="relative">
+            <div className="absolute -inset-4 bg-[#D4A843]/10 blur-3xl rounded-full" />
+            <div className="relative glass p-4 rounded-3xl border-white/10 shadow-2xl overflow-hidden group">
+              <img
+                src={product.images.product}
+                alt={product.name}
+                className="w-full h-auto rounded-2xl transform transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute top-8 right-8 glass-strong px-6 py-4 rounded-2xl border-white/20">
+                <p className="text-[#D4A843] font-bold text-2xl">99.6%+</p>
+                <p className="text-white text-xs font-bold uppercase tracking-widest mt-1">Purity Level</p>
               </div>
             </div>
-          </div>
-        </ScrollRevealSection>
+            
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="glass p-2 rounded-xl border-white/5">
+                  <div className="aspect-square bg-white/5 rounded-lg flex items-center justify-center">
+                    <PackageCheck className="h-8 w-8 text-slate-600" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollRevealSection>
+        </div>
       </div>
     </section>
   );
@@ -532,50 +528,36 @@ function ProductSpecs({ product }: { product: any }) {
 /* ─── Applications ─── */
 function Applications({ product }: { product: any }) {
   return (
-    <section id="applications" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
+    <section id="applications" className="py-24 bg-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollRevealSection>
-          <div className="text-center mb-16">
-            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Global Supply Use Cases
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Powering <span className="gold-text">Critical Industries</span>
-            </h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Supporting high-volume industrial needs with consistent quality and reliable supply ability.
-            </p>
-          </div>
-        </ScrollRevealSection>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6">
+            Industrial Applications
+          </h2>
+          <p className="text-slate-400 text-lg">
+            Versatile chemical solutions optimized for high-performance industrial processes.
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {product.applications.map((app: any, i: number) => (
             <ScrollRevealSection key={i} delay={i * 100}>
-              <div className="group relative glass rounded-2xl overflow-hidden h-full flex flex-col">
-                <div className="aspect-[4/3] overflow-hidden relative">
+              <div className="group h-full glass rounded-3xl overflow-hidden border-white/5 hover:border-[#D4A843]/30 transition-all duration-500 hover:-translate-y-2">
+                <div className="h-48 overflow-hidden relative">
                   <img
                     src={app.image}
                     alt={app.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] to-transparent opacity-60" />
                 </div>
-                <div className="p-6 relative -mt-12 flex-grow flex flex-col">
-                  <div className="inline-block self-start px-3 py-1 bg-[#D4A843] text-[#0A1628] text-[10px] font-bold rounded-full mb-3 uppercase">
-                    {app.tag}
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                <div className="p-8">
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4A843] transition-colors">
                     {app.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                    {app.desc}
+                  <p className="text-slate-400 leading-relaxed">
+                    {app.description}
                   </p>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center text-[#D4A843] text-sm font-bold hover:gap-2 transition-all mt-auto"
-                  >
-                    Get Your Bulk Pricing <ChevronRight className="h-4 w-4" />
-                  </a>
                 </div>
               </div>
             </ScrollRevealSection>
@@ -586,95 +568,80 @@ function Applications({ product }: { product: any }) {
   );
 }
 
-/* ─── Why Choose Us ─── */
-function WhyChooseUs({ product }: { product: any }) {
+/* ─── Why Us ─── */
+function WhyUs() {
   const features = [
     {
-      icon: Globe,
-      title: "Global Supply Solutions",
-      desc: `Streamlined procurement. Benefit from our ${product.supplyAbility} annual supply capacity and 20+ years of export expertise for the most competitive wholesale pricing.`,
+      icon: Factory,
+      title: "Direct Factory Access",
+      desc: "Eliminate middlemen. Source directly from top-tier Chinese manufacturing facilities.",
+      color: "from-blue-500/20 to-blue-600/20"
     },
     {
-      icon: BadgeCheck,
-      title: "Premium Quality Control",
-      desc: "Every container undergoes rigorous QC testing. We guarantee consistent purity across high-volume orders with full batch traceability.",
+      icon: ShieldCheck,
+      title: "Rigorous Quality Control",
+      desc: "Multi-stage testing ensuring every batch meets international purity standards.",
+      color: "from-emerald-500/20 to-emerald-600/20"
     },
     {
-      icon: Globe,
-      title: "Port-to-Door Logistics",
-      desc: "Direct export from major China ports (Qingdao, Tianjin, Shanghai). Reliable global shipping with FOB, CIF, and DDP options available.",
+      icon: Truck,
+      title: "Global Bulk Logistics",
+      desc: "Strategic partnerships with major shipping lines for reliable worldwide delivery.",
+      color: "from-orange-500/20 to-orange-600/20"
     },
     {
-      icon: FlaskConical,
-      title: "Free Sample Support",
-      desc: "Dedicated account managers for large-scale contracts. We provide free samples and full documentation for seamless import processes.",
-    },
+      icon: Zap,
+      title: "Fast Response Time",
+      desc: "Expert technical support and formal quotations provided within 24 hours.",
+      color: "from-purple-500/20 to-purple-600/20"
+    }
   ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28 relative z-10">
+    <section id="why-us" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollRevealSection>
-          <div className="text-center mb-16">
-            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              The China Advantage
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Your Strategic{" "}
-              <span className="gold-text">Supply Chain Partner</span>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <ScrollRevealSection>
+            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-8 leading-tight">
+              Your Strategic Partner in <br />
+              <span className="gold-text">Chemical Sourcing</span>
             </h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Leverage our massive production scale and logistical expertise for your industrial supply ability requirements.
-            </p>
-          </div>
-        </ScrollRevealSection>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feat, i) => (
-            <ScrollRevealSection key={i} delay={i * 100}>
-              <div className="glass rounded-2xl p-6 group hover:border-[#D4A843]/30 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full">
-                <div className="absolute top-0 left-0 right-0 h-1 gold-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="w-14 h-14 rounded-xl bg-[#D4A843]/10 flex items-center justify-center mb-5 group-hover:bg-[#D4A843]/20 transition-colors">
-                  <feat.icon className="h-7 w-7 text-[#D4A843]" />
+            <div className="space-y-6">
+              <div className="flex gap-4 p-6 rounded-2xl glass border-white/5">
+                <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center shrink-0">
+                  <BadgeCheck className="text-[#0A1628] h-6 w-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">
-                  {feat.title}
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {feat.desc}
-                </p>
+                <div>
+                  <h4 className="text-white font-bold text-lg mb-1">ISO Certified Supplier</h4>
+                  <p className="text-slate-400">Compliance with global safety and environmental regulations.</p>
+                </div>
               </div>
-            </ScrollRevealSection>
-          ))}
-        </div>
+              <div className="flex gap-4 p-6 rounded-2xl glass border-white/5">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                  <Globe className="text-[#D4A843] h-6 w-6" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold text-lg mb-1">Worldwide Network</h4>
+                  <p className="text-slate-400">Serving clients across 50+ countries with localized support.</p>
+                </div>
+              </div>
+            </div>
+          </ScrollRevealSection>
 
-        <ScrollRevealSection delay={200}>
-          <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center border border-[#D4A843]/20">
-            <div>
-              <Truck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">Large Scale Logistics</h4>
-              <p className="text-slate-400 text-sm">
-                Optimized 20ft/40ft container loading for maximum cost efficiency
-              </p>
-            </div>
-            <div>
-              <FileCheck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">
-                Global Compliance
-              </h4>
-              <p className="text-slate-400 text-sm">
-                REACH, DMF, and full international chemical safety documentation
-              </p>
-            </div>
-            <div>
-              <Award className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-1">Stable Supply Ability</h4>
-              <p className="text-slate-400 text-sm">
-                Reliable long-term contracts for year-round industrial stability
-              </p>
-            </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {features.map((f, i) => (
+              <ScrollRevealSection key={i} delay={i * 100}>
+                <div className={`p-8 rounded-3xl glass border-white/5 h-full hover:bg-white/5 transition-all duration-300 group`}>
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <f.icon className="h-7 w-7 text-[#D4A843]" />
+                  </div>
+                  <h3 className="text-white font-bold text-xl mb-3">{f.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                </div>
+              </ScrollRevealSection>
+            ))}
           </div>
-        </ScrollRevealSection>
+        </div>
       </div>
     </section>
   );
@@ -687,26 +654,26 @@ function InquiryForm({ product }: { product: any }) {
     email: "",
     company: "",
     phone: "",
+    product_grade: "",
     quantity: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    },
-    []
-  );
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+  const handleSelectChange = (value: string) => {
+    setForm((prev) => ({ ...prev, product_grade: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("loading");
     
     try {
       const apiBaseUrl = getAPIBaseURL();
-      
-      console.log('Submitting form to:', `${apiBaseUrl}/api/send-email`);
-      
       const response = await fetch(`${apiBaseUrl}/api/send-email`, {
         method: 'POST',
         headers: {
@@ -719,243 +686,191 @@ function InquiryForm({ product }: { product: any }) {
       });
 
       if (response.ok) {
-        // Google Ads Conversion Tracking
-        if (typeof (window as any).gtag_report_conversion === 'function') {
-          (window as any).gtag_report_conversion();
-        }
-        setSubmitted(true);
+        setStatus("success");
+        setForm({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          product_grade: "",
+          quantity: "",
+          message: "",
+        });
       } else {
-        const errorData = await response.json();
-        alert(errorData.error || 'Failed to send inquiry. Please try again.');
+        setStatus("error");
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('An error occurred. Please try again later.');
+      setStatus("error");
     }
-  }, [form, product.name]);
+  };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
+    <section id="contact" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollRevealSection>
-          <div className="text-center mb-16">
-            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Unlock Your Wholesale Advantage
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Request Your Wholesale Quote
-            </h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Get competitive wholesale pricing for your bulk {product.name} requirements.
-              Our export team will provide a comprehensive quote within 24 hours.
-            </p>
-          </div>
-        </ScrollRevealSection>
+        <div className="glass rounded-[40px] overflow-hidden border-white/5 shadow-2xl">
+          <div className="grid lg:grid-cols-2">
+            <div className="p-8 sm:p-16 bg-[#D4A843]">
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#0A1628] mb-8">
+                Request Your <br />Bulk Quotation
+              </h2>
+              <p className="text-[#0A1628]/80 text-lg mb-12 font-medium">
+                Our sales engineers are ready to provide technical support and competitive wholesale pricing for your requirements.
+              </p>
 
-        <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-          {/* Contact info sidebar */}
-          <ScrollRevealSection delay={100} className="lg:col-span-2">
-            <div className="space-y-6">
-              <div className="glass rounded-2xl p-6">
-                <h3 className="text-xl font-bold text-white mb-6">
-                  Export Sales Office
-                </h3>
-                <div className="space-y-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#D4A843]/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-[#D4A843]" />
-                    </div>
-                    <div>
-                      <p className="text-slate-400 text-sm">Bulk Sales Email</p>
-                      <a
-                        href={`mailto:${product.email}`}
-                        className="text-white font-medium hover:text-[#D4A843] transition-colors"
-                      >
-                        {product.email}
-                      </a>
-                    </div>
+              <div className="space-y-8">
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0A1628]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0A1628]/20 transition-colors">
+                    <Mail className="text-[#0A1628] h-6 w-6" />
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#D4A843]/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-5 w-5 text-[#D4A843]" />
-                    </div>
-                    <div>
-                      <p className="text-slate-400 text-sm">Direct Line</p>
-                      <p className="text-white font-medium">
-                        +86 400-888-8888
-                      </p>
-                    </div>
+                  <div>
+                    <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Email Us</p>
+                    <p className="text-[#0A1628] font-bold text-xl">info@sinopeakchem.com</p>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#D4A843]/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-[#D4A843]" />
-                    </div>
-                    <div>
-                      <p className="text-slate-400 text-sm">Logistics Hub</p>
-                      <p className="text-white font-medium">
-                        Chemical Industrial Park,
-                        <br />
-                        Shandong, China
-                      </p>
-                    </div>
+                </div>
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0A1628]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0A1628]/20 transition-colors">
+                    <Phone className="text-[#0A1628] h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Direct Line</p>
+                    <p className="text-[#0A1628] font-bold text-xl">+86 123 4567 8900</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0A1628]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0A1628]/20 transition-colors">
+                    <MapPin className="text-[#0A1628] h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Headquarters</p>
+                    <p className="text-[#0A1628] font-bold text-xl">Shanghai, China</p>
                   </div>
                 </div>
               </div>
-
-              <div className="glass rounded-2xl p-6 border border-[#D4A843]/20">
-                <h4 className="text-white font-semibold mb-3">
-                  Wholesale Benefits
-                </h4>
-                <ul className="space-y-2">
-                  {[
-                    "Competitive wholesale pricing",
-                    "Tiered volume discounts",
-                    "Custom packaging options",
-                    "Dedicated logistics support",
-                  ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2 text-slate-300 text-sm"
-                    >
-                      <CheckCircle2 className="h-4 w-4 text-[#D4A843] flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
-          </ScrollRevealSection>
 
-          {/* Form */}
-          <ScrollRevealSection delay={200} className="lg:col-span-3">
-            <div className="glass rounded-2xl p-6 sm:p-8">
-              {submitted ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 rounded-full bg-[#D4A843]/10 flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="h-10 w-10 text-[#D4A843]" />
+            <div className="p-8 sm:p-16 bg-white/5">
+              {status === "success" ? (
+                <div className="h-full flex flex-col items-center justify-center text-center py-12 animate-fade-in">
+                  <div className="w-24 h-24 rounded-full bg-[#D4A843]/10 flex items-center justify-center mb-8">
+                    <CheckCircle2 className="h-12 w-12 text-[#D4A843]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Inquiry Submitted!
-                  </h3>
-                  <p className="text-slate-400 mb-6">
-                    Thank you! Our bulk export team will contact
-                    you within 24 hours with a detailed quotation.
+                  <h3 className="text-3xl font-bold text-white mb-4">Inquiry Sent!</h3>
+                  <p className="text-slate-400 text-lg mb-8">
+                    Thank you for your request. Our sales team will contact you within 24 hours.
                   </p>
                   <Button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setForm({
-                        name: "",
-                        email: "",
-                        company: "",
-                        phone: "",
-                        quantity: "",
-                        message: "",
-                      });
-                    }}
+                    onClick={() => setStatus("idle")}
                     variant="outline"
-                    className="border-[#D4A843]/40 text-[#D4A843] hover:bg-[#D4A843]/10"
+                    className="border-[#D4A843]/40 text-[#D4A843] hover:bg-[#D4A843]/10 px-8"
                   >
-                    Submit Another Inquiry
+                    Send Another Inquiry
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Full Name <span className="text-red-400">*</span>
-                      </label>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Full Name *</label>
                       <Input
                         name="name"
+                        required
                         value={form.name}
                         onChange={handleChange}
-                        required
                         placeholder="John Smith"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+                        className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Email <span className="text-red-400">*</span>
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Email *</label>
                       <Input
                         name="email"
                         type="email"
+                        required
                         value={form.email}
                         onChange={handleChange}
-                        required
-                        placeholder="john@sinopeakchem.com"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+                        placeholder="john@company.com"
+                        className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Company
-                      </label>
+
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Company</label>
                       <Input
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        placeholder="Company Name"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+                        placeholder="Global Chemicals Inc."
+                        className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Phone <span className="text-red-400">*</span>
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Phone Number</label>
                       <Input
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        required
-                        placeholder="+1 234 567 8900"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+                        placeholder="+1 (555) 000-0000"
+                        className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-slate-300 mb-1.5 block">
-                        Quantity <span className="text-red-400">*</span>
-                      </label>
+
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Product Grade</label>
+                      <Select onValueChange={handleSelectChange}>
+                        <SelectTrigger className="bg-white/5 border-white/10 text-white py-6">
+                          <SelectValue placeholder="Select Grade" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#0A1628] border-white/10 text-white">
+                          <SelectItem value="Industrial">Industrial Grade</SelectItem>
+                          <SelectItem value="Food">Food Grade</SelectItem>
+                          <SelectItem value="Pharmaceutical">Pharmaceutical Grade</SelectItem>
+                          <SelectItem value="Custom">Custom Specification</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Order Quantity</label>
                       <Input
                         name="quantity"
                         value={form.quantity}
                         onChange={handleChange}
-                        required
-                        placeholder="e.g. 100 MT / month"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
+                        placeholder="e.g. 20 MT"
+                        className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="text-sm text-slate-300 mb-1.5 block">
-                      Bulk Requirements
-                    </label>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Requirements / Message</label>
                     <Textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      rows={4}
-                      placeholder="Tell us about your annual volume, target price, and port of destination..."
-                      className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20 resize-none"
+                      placeholder="Please describe your specific requirements..."
+                      className="bg-white/5 border-white/10 text-white min-h-[120px] resize-none"
                     />
                   </div>
+
                   <Button
                     type="submit"
-                    className="w-full gold-gradient text-[#0A1628] font-bold text-lg py-6 rounded-xl shadow-lg shadow-[#D4A843]/20 hover:shadow-[#D4A843]/40 transition-shadow"
+                    disabled={status === "loading"}
+                    className="w-full gold-gradient text-[#0A1628] font-bold py-8 rounded-2xl text-xl shadow-2xl shadow-[#D4A843]/20 hover:opacity-90 transition-all"
                   >
-                    Secure Your Bulk Pricing
-                    <ChevronRight className="ml-2 h-5 w-5" />
+                    {status === "loading" ? "Processing..." : "Get Formal Quotation"}
                   </Button>
+                  
+                  {status === "error" && (
+                    <p className="text-red-400 text-center font-medium">Failed to send inquiry. Please try again later.</p>
+                  )}
                 </form>
               )}
             </div>
-          </ScrollRevealSection>
+          </div>
         </div>
       </div>
     </section>
@@ -965,101 +880,62 @@ function InquiryForm({ product }: { product: any }) {
 /* ─── Footer ─── */
 function Footer({ product }: { product: any }) {
   return (
-    <footer className="py-16 border-t border-white/5 relative z-10 bg-[#0A1628]">
+    <footer className="bg-[#0A1628] border-t border-white/5 pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg gold-gradient flex items-center justify-center font-bold text-[#0A1628]">
+        <div className="grid md:grid-cols-4 gap-12 mb-16">
+          <div className="col-span-2">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center font-bold text-[#0A1628]">
                 {product.chemicalFormula.substring(0, 2)}
               </div>
-              <span className="text-lg font-bold text-white">
-                Sinopeakchem
-              </span>
+              <span className="text-2xl font-bold text-white">Sinopeakchem</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Leading China supplier of premium {product.name} with {product.supplyAbility} annual supply capacity. Providing global supply chain solutions for 20+ years.
+            <p className="text-slate-400 max-w-sm leading-relaxed mb-8">
+              A leading global supplier of high-purity {product.name} and industrial chemical solutions. Dedicated to quality, reliability, and strategic sourcing excellence.
             </p>
+            <div className="flex gap-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4A843]/20 transition-colors cursor-pointer group">
+                  <div className="w-5 h-5 bg-slate-600 rounded-sm group-hover:bg-[#D4A843] transition-colors" />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Our Products</h4>
-            <ul className="space-y-2">
-              {Object.entries(products).map(([slug, p]) => (
-                <li key={slug}>
-                  <a
-                    href={`/${slug}`}
-                    className="text-slate-400 text-sm hover:text-[#D4A843] transition-colors flex items-center gap-2"
-                  >
-                    <ChevronRight className="h-3 w-3 text-[#D4A843]" />
-                    {p.name}
-                  </a>
-                </li>
-              ))}
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h4>
+            <ul className="space-y-4">
+              <li><a href="#products" className="text-slate-400 hover:text-[#D4A843] transition-colors">Products</a></li>
+              <li><a href="#applications" className="text-slate-400 hover:text-[#D4A843] transition-colors">Applications</a></li>
+              <li><a href="#why-us" className="text-slate-400 hover:text-[#D4A843] transition-colors">Why Choose Us</a></li>
+              <li><a href="#contact" className="text-slate-400 hover:text-[#D4A843] transition-colors">Contact</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Support</h4>
-            <ul className="space-y-2">
-              {[
-                "China Export License",
-                "REACH Compliant",
-                "SDS/MSDS Provided",
-                "Third-party Inspection",
-                "Free Sample Support",
-              ].map((item, i) => (
-                <li key={i}>
-                  <span className="text-slate-400 text-sm flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-[#D4A843]" />
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">China Office</h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3 text-slate-400 text-sm">
-                <Mail className="h-4 w-4 text-[#D4A843]" />
-                <a
-                  href={`mailto:${product.email}`}
-                  className="hover:text-[#D4A843] transition-colors"
-                >
-                  {product.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-slate-400 text-sm">
-                <Phone className="h-4 w-4 text-[#D4A843]" />
-                +86 400-888-8888
-              </li>
-              <li className="flex items-start gap-3 text-slate-400 text-sm">
-                <MapPin className="h-4 w-4 text-[#D4A843] mt-0.5" />
-                Industrial Park, Shandong, China
-              </li>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-sm">Legal</h4>
+            <ul className="space-y-4">
+              <li><a href="#" className="text-slate-400 hover:text-[#D4A843] transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-[#D4A843] transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-[#D4A843] transition-colors">Cookie Policy</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-[#D4A843] transition-colors">Sitemap</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="pt-12 border-t border-white/5 flex flex-col md:row justify-between items-center gap-6">
           <p className="text-slate-500 text-sm">
-            © 2026 Sinopeakchem | Top China Supplier. All rights reserved.
+            © 2024 Sinopeakchem. All rights reserved. Professional Chemical Supply Solutions.
           </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="#"
-              className="text-slate-500 text-sm hover:text-[#D4A843] transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-slate-500 text-sm hover:text-[#D4A843] transition-colors"
-            >
-              Terms of Service
-            </a>
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-slate-600" />
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Secure Supply Chain</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-slate-600" />
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Global Logistics</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1070,133 +946,83 @@ function Footer({ product }: { product: any }) {
 /* ─── Back to Top ─── */
 function BackToTop() {
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 500);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const toggleVisible = () => setVisible(window.scrollY > 500);
+    window.addEventListener("scroll", toggleVisible);
+    return () => window.removeEventListener("scroll", toggleVisible);
   }, []);
 
-  if (!visible) return null;
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full gold-gradient text-[#0A1628] flex items-center justify-center shadow-lg shadow-[#D4A843]/30 hover:shadow-[#D4A843]/50 transition-all animate-fade-in"
+      className={`fixed bottom-8 left-8 z-40 w-12 h-12 rounded-full glass border-white/10 flex items-center justify-center text-[#D4A843] hover:bg-[#D4A843]/10 transition-all duration-300 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+      }`}
     >
-      <ArrowUp className="h-5 w-5" />
+      <ArrowUp size={20} />
     </button>
   );
 }
 
-/* ─── Main Page ─── */
+/* ─── Main Index Page ─── */
 export default function Index() {
   const { productSlug } = useParams();
-  const product = productSlug ? products[productSlug] : null;
+  const product = products[productSlug as keyof typeof products];
 
   if (!product) {
-    return <Navigate to="/sodium-thiosulfate" replace />;
+    return <Navigate to="/all" replace />;
   }
 
-  const testimonials = [
-    {
-      name: "Marcus Thompson",
-      role: "Procurement Director",
-      company: "Global Water Solutions Ltd.",
-      content: `Sinopeakchem has been our primary supplier for ${product.name} for over 5 years. Their consistency in purity and reliable global logistics have been crucial for our municipal water treatment projects.`,
-      industry: "Water Treatment",
-    },
-    {
-      name: "Ahmed Al-Fayed",
-      role: "Operations Manager",
-      company: "Desert Mining Corp",
-      content: `Switching to Sinopeakchem for our bulk chemical needs was a strategic move. Their ${product.name} meets our rigorous mining standards, and their tiered pricing significantly optimized our operational costs.`,
-      industry: "Mining",
-    },
-    {
-      name: "Elena Rodriguez",
-      role: "Quality Assurance Lead",
-      company: "EcoTextile Manufacturing",
-      content: "The technical support and documentation provided by Sinopeakchem are top-notch. Their products are consistently REACH compliant, making our export processes to Europe seamless.",
-      industry: "Textile",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843] selection:text-[#0A1628]">
+    <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843]/30 selection:text-[#D4A843]">
       <Helmet>
-        <title>{product.seo.title}</title>
-        <meta name="description" content={product.seo.description} />
-        <meta name="keywords" content={product.seo.keywords} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={product.seo.title} />
-        <meta property="og:description" content={product.seo.description} />
-        <meta property="og:image" content={product.images.product} />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.seo.title} />
-        <meta name="twitter:description" content={product.seo.description} />
-        <meta name="twitter:image" content={product.images.product} />
-
-        {/* JSON-LD Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "Product",
-            "name": product.name,
-            "image": product.images.product,
-            "description": product.seo.description,
-            "brand": {
-              "@type": "Brand",
-              "name": "Sinopeakchem"
-            },
-            "offers": {
-              "@type": "Offer",
-              "availability": "https://schema.org/InStock",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "USD"
-              }
-            }
-          })}
-        </script>
+        <title>{product.name} | Premium China Supplier | Sinopeakchem</title>
+        <meta name="description" content={product.subtitle} />
       </Helmet>
 
       <Navigation product={product} />
       <Hero product={product} />
       <TrustBar />
-      <ProductSpecs product={product} />
+      <ProductDetails product={product} />
       <Applications product={product} />
-      <WhyChooseUs product={product} />
-
-      {/* ─── Testimonials ─── */}
-      <section className="py-20 sm:py-28 bg-[#080f1f]/50 relative z-10">
+      <WhyUs />
+      
+      {/* Testimonials */}
+      <section className="py-24 bg-white/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollRevealSection>
-            <div className="text-center mb-16">
-              <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-                Global Success Stories
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-                Trusted by <span className="gold-text">Industry Leaders</span>
-              </h2>
-              <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-                Discover why top companies worldwide choose Sinopeakchem as their strategic partner for bulk chemical supply.
-              </p>
-            </div>
-          </ScrollRevealSection>
-
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6">Global Trust</h2>
+            <p className="text-slate-400 text-lg">Partnering with industry leaders across the globe.</p>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
+            {[
+              {
+                name: "Michael Chen",
+                role: "Procurement Director",
+                company: "Global Tech Solutions",
+                content: "Sinopeakchem has been our reliable partner for over 5 years. Their quality consistency and logistics support are unmatched in the industry."
+              },
+              {
+                name: "Sarah Williams",
+                role: "Quality Assurance Manager",
+                company: "Pure Water Systems",
+                content: "The purity levels of their sodium thiosulfate are consistently above 99.6%. Their technical documentation and SDS are always comprehensive."
+              },
+              {
+                name: "Ahmed Hassan",
+                role: "Operations Manager",
+                company: "Mining Resources Ltd",
+                content: "Exceptional service and fast response times. They understand the urgency of industrial supply chains and always deliver on time."
+              }
+            ].map((t, i) => (
               <ScrollRevealSection key={i} delay={i * 100}>
-                <div className="glass-strong p-8 rounded-[2rem] border border-white/5 h-full flex flex-col hover:border-[#D4A843]/30 transition-all group">
+                <div className="glass p-10 rounded-[32px] border-white/5 h-full flex flex-col hover:bg-white/5 transition-all duration-500">
                   <div className="flex gap-1 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-[#D4A843] text-[#D4A843]" />
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className="h-4 w-4 fill-[#D4A843] text-[#D4A843]" />
                     ))}
                   </div>
-                  <Quote className="h-10 w-10 text-[#D4A843]/20 mb-4 group-hover:text-[#D4A843]/40 transition-colors" />
                   <p className="text-slate-300 italic mb-8 flex-grow leading-relaxed">
                     "{t.content}"
                   </p>
@@ -1214,6 +1040,7 @@ export default function Index() {
 
       <InquiryForm product={product} />
       <Footer product={product} />
+      <FloatingCTA productName={product.name} />
       <BackToTop />
     </div>
   );
