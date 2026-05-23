@@ -7,8 +7,9 @@ let runtimeConfig: {
 let configLoading = true;
 
 // Default fallback configuration
+// In Vercel environment, /api/send-email is relative to the current host
 const defaultConfig = {
-  API_BASE_URL: 'http://127.0.0.1:8000', // Only used if runtime config fails to load
+  API_BASE_URL: window.location.origin, 
 };
 
 // Function to load runtime configuration
@@ -46,40 +47,30 @@ export async function loadRuntimeConfig(): Promise<void> {
 
 // Get current configuration
 export function getConfig() {
-  // If config is still loading, return default config to avoid using stale Vite env vars
-  if (configLoading) {
-    console.log('Config still loading, using default config');
-    return defaultConfig;
-  }
-
-  // First try runtime config (for Lambda)
+  // First try runtime config (for Lambda/Serverless)
   if (runtimeConfig) {
-    console.log('Using runtime config');
     return runtimeConfig;
   }
 
   // Then try Vite environment variables (for local development)
   if (import.meta.env.VITE_API_BASE_URL) {
-    const viteConfig = {
+    return {
       API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
     };
-    console.log('Using Vite environment config');
-    return viteConfig;
   }
 
-  // Finally fall back to default
-  console.log('Using default config');
-  return defaultConfig;
+  // Finally fall back to default (current origin)
+  return {
+    API_BASE_URL: typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000',
+  };
 }
 
-// Dynamic API_BASE_URL getter - this will always return the current config
+// Dynamic API_BASE_URL getter
 export function getAPIBaseURL(): string {
-  return getConfig().API_BASE_URL;
+  const url = getConfig().API_BASE_URL;
+  // Ensure no trailing slash for consistency
+  return url.endsWith('/') ? url.slice(0, -1) : url;
 }
-
-// For backward compatibility, but this should be avoided
-// Removed static export to prevent using stale config values
-// export const API_BASE_URL = getAPIBaseURL();
 
 export const config = {
   get API_BASE_URL() {
