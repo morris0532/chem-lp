@@ -126,7 +126,7 @@ export function FloatingCTA({ productName }: FloatingCTAProps) {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-300">
-                  Estimated Quantity
+                  Estimated Quantity (Optional)
                 </label>
                 <Input
                   type="text"

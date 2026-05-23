@@ -812,7 +812,7 @@ function InquiryForm({ product }: { product: any }) {
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+1 (555) 000-0000 (Optional)"
                         className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
