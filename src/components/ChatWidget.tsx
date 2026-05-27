@@ -145,7 +145,7 @@ export function ChatWidget() {
               <div>
                 <p className="text-[#0A1628] font-bold text-sm">Sales Support</p>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#0A1628] animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
                   <p className="text-[#0A1628]/70 text-xs font-medium">Online</p>
                 </div>
               </div>
