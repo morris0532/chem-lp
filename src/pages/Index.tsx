@@ -446,7 +446,7 @@ function SDSDownloadDialog({ product }: { product: any }) {
   );
 }
 
-/* ─── Product Details (Restored Style 3) ─── */
+/* ─── Product Details ─── */
 function ProductDetails({ product }: { product: any }) {
   return (
     <section id="products" className="py-20 sm:py-28 relative z-10">
@@ -529,7 +529,7 @@ function ProductDetails({ product }: { product: any }) {
   );
 }
 
-/* ─── Applications (Restored Style 3) ─── */
+/* ─── Applications (Restored 4-column layout with text below) ─── */
 function Applications({ product }: { product: any }) {
   return (
     <section id="applications" className="py-20 sm:py-28 bg-[#080f1f] relative z-10">
@@ -548,24 +548,24 @@ function Applications({ product }: { product: any }) {
           </div>
         </ScrollRevealSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {product.applications.map((app: any, i: number) => (
             <ScrollRevealSection key={i} delay={i * 100}>
-              <div className="group relative overflow-hidden rounded-[2rem] glass border border-white/5 hover:border-[#D4A843]/30 transition-all duration-500 h-full">
-                <div className="aspect-[4/3] overflow-hidden">
+              <div className="group h-full flex flex-col">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 border border-white/5 group-hover:border-[#D4A843]/30 transition-colors duration-500">
                   <img
                     src={app.image}
                     alt={app.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/20 to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#D4A843] transition-colors">
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#D4A843] transition-colors">
                     {app.title}
                   </h3>
-                  <p className="text-slate-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    {app.description}
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {app.desc || app.description}
                   </p>
                 </div>
               </div>
@@ -574,7 +574,7 @@ function Applications({ product }: { product: any }) {
         </div>
 
         <ScrollRevealSection delay={200}>
-          <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center border border-[#D4A843]/20">
+          <div className="mt-16 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center border border-[#D4A843]/20">
             <div>
               <Truck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
               <h4 className="text-white font-semibold mb-1">Large Scale Logistics</h4>
@@ -605,7 +605,7 @@ function Applications({ product }: { product: any }) {
   );
 }
 
-/* ─── Why Us (Restored Style 2) ─── */
+/* ─── Why Us ─── */
 function WhyUs() {
   const features = [
     {
@@ -910,7 +910,7 @@ function InquiryForm({ product }: { product: any }) {
   );
 }
 
-/* ─── Footer (Restored Style 1 + Retained Horizontal Line Content) ─── */
+/* ─── Footer ─── */
 function Footer({ product }: { product: any }) {
   return (
     <footer className="py-16 border-t border-white/5 relative z-10 bg-[#0A1628]">
