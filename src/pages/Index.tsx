@@ -449,56 +449,52 @@ function SDSDownloadDialog({ product }: { product: any }) {
 /* ─── Product Details ─── */
 function ProductDetails({ product }: { product: any }) {
   return (
-    <section id="products" className="py-20 sm:py-32 relative z-10">
+    <section id="products" className="py-20 sm:py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="space-y-8">
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#D4A843]/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative glass rounded-[32px] overflow-hidden border-white/10">
-                  <img
-                    src={product.images.product}
-                    alt={product.name}
-                    className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-6 right-6">
-                    <div className="glass-strong px-4 py-2 rounded-full border border-[#D4A843]/30">
-                      <span className="text-[#D4A843] font-bold text-sm tracking-widest uppercase">
-                        Export Grade
-                      </span>
-                    </div>
+          <div className="text-center mb-16">
+            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
+              Bulk Supply Specifications
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
+              Premium <span className="gold-text">Product Standards</span>
+            </h2>
+            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+              Our factory-direct {product.name} meets the highest industry standards for purity and bulk supply consistency.
+            </p>
+          </div>
+        </ScrollRevealSection>
+        <ScrollRevealSection delay={100}>
+          <div className="glass rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div className="grid lg:grid-cols-2 items-stretch">
+              {/* Left Side: Image */}
+              <div className="relative group bg-[#080f1f]/50 p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#D4A843]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <img
+                  src={product.images.product}
+                  alt={product.name}
+                  className="relative z-10 w-full rounded-2xl shadow-2xl object-cover max-h-[500px] transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              {/* Right Side: Specs */}
+              <div className="p-8 sm:p-12 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider border border-[#D4A843]/20">
+                      Bulk Wholesale
+                    </span>
+                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider border border-emerald-500/20">
+                      Ready to Ship
+                    </span>
                   </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="glass rounded-2xl p-6 border-white/5">
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">CAS Number</p>
-                  <p className="text-white font-bold text-lg">{product.cas}</p>
-                </div>
-                <div className="glass rounded-2xl p-6 border-white/5">
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Chemical Formula</p>
-                  <p className="text-[#D4A843] font-bold text-lg">{product.chemicalFormula}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:pt-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4A843]/10 border border-[#D4A843]/20 mb-6">
-                <BadgeCheck className="h-4 w-4 text-[#D4A843]" />
-                <span className="text-[#D4A843] text-xs font-bold uppercase tracking-widest">
-                  Verified Manufacturer
-                </span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 leading-tight">
-                {product.name} <br />
-                <span className="gold-text">Specifications</span>
-              </h2>
-
-              <div className="space-y-1">
-                <div className="glass rounded-2xl p-8 border-white/10">
-                  <div className="grid gap-1">
+                  <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                    {product.name}
+                  </h3>
+                  <p className="text-[#D4A843] font-mono text-base mb-10 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#D4A843]" />
+                    {product.chemicalFormula} · CAS {product.cas}
+                  </p>
+                  <div className="space-y-5">
                     {product.specifications.map((spec: any, i: number) => (
                       <div
                         key={i}
@@ -512,7 +508,6 @@ function ProductDetails({ product }: { product: any }) {
                     ))}
                   </div>
                 </div>
-
                 <div className="mt-12 flex flex-col sm:flex-row gap-4">
                   <a href="#contact" className="flex-1">
                     <Button className="w-full gold-gradient text-[#0A1628] font-bold py-7 rounded-2xl text-lg shadow-xl shadow-[#D4A843]/10 hover:shadow-[#D4A843]/20 transition-all">
