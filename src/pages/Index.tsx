@@ -703,7 +703,7 @@ function InquiryForm({ product }: { product: any }) {
     email: "",
     company: "",
     phone: "",
-    product_grade: "",
+    application: "",
     quantity: "",
     message: "",
   });
@@ -714,7 +714,7 @@ function InquiryForm({ product }: { product: any }) {
   };
 
   const handleSelectChange = (value: string) => {
-    setForm((prev) => ({ ...prev, product_grade: value }));
+    setForm((prev) => ({ ...prev, application: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -741,7 +741,7 @@ function InquiryForm({ product }: { product: any }) {
           email: "",
           company: "",
           phone: "",
-          product_grade: "",
+          application: "",
           quantity: "",
           message: "",
         });
@@ -870,15 +870,18 @@ function InquiryForm({ product }: { product: any }) {
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Required Grade</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Primary Application</label>
                       <Select onValueChange={handleSelectChange}>
                         <SelectTrigger className="bg-white/5 border-white/10 text-white py-6">
-                          <SelectValue placeholder="Select Grade" />
+                          <SelectValue placeholder="Select Application" />
                         </SelectTrigger>
                         <SelectContent className="bg-[#0A1628] border-white/10 text-white">
-                          <SelectItem value="industrial">Industrial Grade</SelectItem>
-                          <SelectItem value="technical">Technical Grade</SelectItem>
-                          <SelectItem value="custom">Custom Specification</SelectItem>
+                          {product.applications.map((app: any, i: number) => (
+                            <SelectItem key={i} value={app.title.toLowerCase().replace(/\s+/g, '-')}>
+                              {app.title}
+                            </SelectItem>
+                          ))}
+                          <SelectItem value="other">Other / Custom Use</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
