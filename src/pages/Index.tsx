@@ -425,19 +425,19 @@ function SDSDownloadDialog({ product }: { product: any }) {
             </div>
             <div>
               <label className="text-sm text-slate-300 mb-1.5 block">
-                Company <span className="text-red-400">*</span>
+                Company Name <span className="text-red-400">*</span>
               </label>
               <Input
                 name="company"
                 value={form.company}
                 onChange={handleChange}
                 required
-                placeholder="Company Name"
+                placeholder="Acme Chemicals Ltd"
                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
               />
             </div>
-            <Button type="submit" className="w-full gold-gradient text-[#0A1628] font-bold">
-              Submit & Download
+            <Button type="submit" className="w-full gold-gradient text-[#0A1628] font-bold py-6 mt-2">
+              Verify & Download
             </Button>
           </form>
         )}
@@ -449,55 +449,56 @@ function SDSDownloadDialog({ product }: { product: any }) {
 /* ─── Product Details ─── */
 function ProductDetails({ product }: { product: any }) {
   return (
-    <section id="products" className="py-20 sm:py-28 relative z-10">
+    <section id="products" className="py-20 sm:py-32 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollRevealSection>
-          <div className="text-center mb-16">
-            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
-              Bulk Supply Specifications
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-              Premium <span className="gold-text">Product Standards</span>
-            </h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-              Our factory-direct {product.name} meets the highest industry standards for purity and bulk supply consistency.
-            </p>
-          </div>
-        </ScrollRevealSection>
-
-        <ScrollRevealSection delay={100}>
-          <div className="glass rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-            <div className="grid lg:grid-cols-2 items-stretch">
-              {/* Left Side: Image */}
-              <div className="relative group bg-[#080f1f]/50 p-6 sm:p-10 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#D4A843]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <img
-                  src={product.images.product}
-                  alt={product.name}
-                  className="relative z-10 w-full rounded-2xl shadow-2xl object-cover max-h-[500px] transition-transform duration-700 group-hover:scale-105"
-                />
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#D4A843]/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative glass rounded-[32px] overflow-hidden border-white/10">
+                  <img
+                    src={product.images.product}
+                    alt={product.name}
+                    className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-6 right-6">
+                    <div className="glass-strong px-4 py-2 rounded-full border border-[#D4A843]/30">
+                      <span className="text-[#D4A843] font-bold text-sm tracking-widest uppercase">
+                        Export Grade
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Right Side: Specs */}
-              <div className="p-8 sm:p-12 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-8">
-                    <span className="px-3 py-1 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold rounded-full uppercase tracking-wider border border-[#D4A843]/20">
-                      Bulk Wholesale
-                    </span>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider border border-emerald-500/20">
-                      Ready to Ship
-                    </span>
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                    {product.name}
-                  </h3>
-                  <p className="text-[#D4A843] font-mono text-base mb-10 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#D4A843]" />
-                    {product.chemicalFormula} · CAS {product.cas}
-                  </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="glass rounded-2xl p-6 border-white/5">
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">CAS Number</p>
+                  <p className="text-white font-bold text-lg">{product.cas}</p>
+                </div>
+                <div className="glass rounded-2xl p-6 border-white/5">
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Chemical Formula</p>
+                  <p className="text-[#D4A843] font-bold text-lg">{product.chemicalFormula}</p>
+                </div>
+              </div>
+            </div>
 
-                  <div className="space-y-5">
+            <div className="lg:pt-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4A843]/10 border border-[#D4A843]/20 mb-6">
+                <BadgeCheck className="h-4 w-4 text-[#D4A843]" />
+                <span className="text-[#D4A843] text-xs font-bold uppercase tracking-widest">
+                  Verified Manufacturer
+                </span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 leading-tight">
+                {product.name} <br />
+                <span className="gold-text">Specifications</span>
+              </h2>
+
+              <div className="space-y-1">
+                <div className="glass rounded-2xl p-8 border-white/10">
+                  <div className="grid gap-1">
                     {product.specifications.map((spec: any, i: number) => (
                       <div
                         key={i}
@@ -791,7 +792,7 @@ function InquiryForm({ product }: { product: any }) {
                   </div>
                   <div>
                     <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Headquarters</p>
-                    <p className="text-[#0A1628] font-bold text-xl">Shanghai, China</p>
+                    <p className="text-[#0A1628] font-bold text-xl">Industrial Park, Shanghai, China</p>
                   </div>
                 </div>
               </div>
@@ -845,22 +846,23 @@ function InquiryForm({ product }: { product: any }) {
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Company</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Company *</label>
                       <Input
                         name="company"
+                        required
                         value={form.company}
                         onChange={handleChange}
-                        placeholder="Global Chemicals Inc."
+                        placeholder="Acme Chemicals Ltd"
                         className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Phone Number</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Phone</label>
                       <Input
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="+1 (555) 000-0000 (Optional)"
+                        placeholder="+1 234 567 890"
                         className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
@@ -868,33 +870,32 @@ function InquiryForm({ product }: { product: any }) {
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Product Grade</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Required Grade</label>
                       <Select onValueChange={handleSelectChange}>
                         <SelectTrigger className="bg-white/5 border-white/10 text-white py-6">
                           <SelectValue placeholder="Select Grade" />
                         </SelectTrigger>
                         <SelectContent className="bg-[#0A1628] border-white/10 text-white">
-                          <SelectItem value="Industrial">Industrial Grade</SelectItem>
-                          <SelectItem value="Food">Food Grade</SelectItem>
-                          <SelectItem value="Pharmaceutical">Pharmaceutical Grade</SelectItem>
-                          <SelectItem value="Custom">Custom Specification</SelectItem>
+                          <SelectItem value="industrial">Industrial Grade</SelectItem>
+                          <SelectItem value="technical">Technical Grade</SelectItem>
+                          <SelectItem value="custom">Custom Specification</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Order Quantity</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Monthly Quantity</label>
                       <Input
                         name="quantity"
                         value={form.quantity}
                         onChange={handleChange}
-                        placeholder="e.g. 20 MT"
+                        placeholder="e.g. 100 MT"
                         className="bg-white/5 border-white/10 text-white py-6"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Requirements / Message</label>
+                    <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Message</label>
                     <Textarea
                       name="message"
                       value={form.message}
@@ -1062,6 +1063,91 @@ export default function Index() {
     return <Navigate to="/all" replace />;
   }
 
+  // Define testimonials for each product
+  const productTestimonials: Record<string, any[]> = {
+    "sodium-thiosulfate": [
+      {
+        name: "Dr. Emily White",
+        role: "Water Treatment Specialist",
+        company: "AquaPure Solutions",
+        content: "Sinopeakchem's Sodium Thiosulfate consistently delivers exceptional purity, crucial for our advanced water dechlorination processes. Their quality control is truly top-tier."
+      },
+      {
+        name: "David Lee",
+        role: "Logistics Manager",
+        company: "Global Chemical Distributors",
+        content: "We rely on Sinopeakchem for large-scale Sodium Thiosulfate supply. Their efficient logistics and consistent delivery schedules are vital for our global distribution network."
+      },
+      {
+        name: "Maria Garcia",
+        role: "Aquaculture Operations Lead",
+        company: "Ocean Harvest Farms",
+        content: "The high-grade Sodium Thiosulfate from Sinopeakchem ensures the health and safety of our aquatic environments. A trusted partner for our aquaculture needs."
+      }
+    ],
+    "oxalic-acid": [
+      {
+        name: "John Miller",
+        role: "Industrial Cleaning Director",
+        company: "Sparkle Clean Co.",
+        content: "Sinopeakchem's Oxalic Acid is our go-to for rust removal and heavy-duty cleaning. Its consistent purity guarantees effective results every time."
+      },
+      {
+        name: "Sophie Dubois",
+        role: "Textile Production Manager",
+        company: "Vibrant Fabrics Inc.",
+        content: "For our dyeing and printing processes, the quality of Oxalic Acid is paramount. Sinopeakchem provides a reliable supply of high-purity material that meets our stringent standards."
+      },
+      {
+        name: "Wei Chen",
+        role: "Rare Earth Engineer",
+        company: "Mineral Extraction Group",
+        content: "The consistent quality of Sinopeakchem's Oxalic Acid is essential for our rare earth processing operations. Their technical support and supply chain reliability are excellent."
+      }
+    ],
+    "caustic-soda-cas-1310-73-2": [
+      {
+        name: "Robert Johnson",
+        role: "Pulp & Paper Mill Manager",
+        company: "Forest Products Corp.",
+        content: "Sinopeakchem's Caustic Soda is indispensable for our pulping and bleaching operations. The consistent concentration and reliable supply ensure our production runs smoothly."
+      },
+      {
+        name: "Anna Petrova",
+        role: "Chemical Procurement Head",
+        company: "ChemSolutions Global",
+        content: "We appreciate Sinopeakchem's ability to provide Caustic Soda in both pearls and flakes with guaranteed purity. Their bulk wholesale pricing and global logistics are highly competitive."
+      },
+      {
+        name: "Carlos Ramirez",
+        role: "Alumina Refinery Supervisor",
+        company: "Bauxite Resources Ltd.",
+        content: "For alumina production, a steady and high-quality supply of Caustic Soda is critical. Sinopeakchem has proven to be a dependable partner, consistently meeting our demands."
+      }
+    ]
+  };
+
+  const testimonials = productTestimonials[productSlug as string] || [
+    {
+      name: "Michael Chen",
+      role: "Procurement Director",
+      company: "Global Tech Solutions",
+      content: "Sinopeakchem has been our reliable partner for over 5 years. Their quality consistency and logistics support are unmatched in the industry."
+    },
+    {
+      name: "Sarah Williams",
+      role: "Quality Assurance Manager",
+      company: "Pure Water Systems",
+      content: "The purity levels of their products are consistently high. Their technical documentation and SDS are always comprehensive."
+    },
+    {
+      name: "Ahmed Hassan",
+      role: "Operations Manager",
+      company: "Mining Resources Ltd",
+      content: "Exceptional service and fast response times. They understand the urgency of industrial supply chains and always deliver on time."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#0A1628] selection:bg-[#D4A843]/30 selection:text-[#D4A843]">
       <Helmet>
@@ -1084,26 +1170,7 @@ export default function Index() {
             <p className="text-slate-400 text-lg">Partnering with industry leaders across the globe.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Michael Chen",
-                role: "Procurement Director",
-                company: "Global Tech Solutions",
-                content: "Sinopeakchem has been our reliable partner for over 5 years. Their quality consistency and logistics support are unmatched in the industry."
-              },
-              {
-                name: "Sarah Williams",
-                role: "Quality Assurance Manager",
-                company: "Pure Water Systems",
-                content: "The purity levels of their sodium thiosulfate are consistently above 99.6%. Their technical documentation and SDS are always comprehensive."
-              },
-              {
-                name: "Ahmed Hassan",
-                role: "Operations Manager",
-                company: "Mining Resources Ltd",
-                content: "Exceptional service and fast response times. They understand the urgency of industrial supply chains and always deliver on time."
-              }
-            ].map((t, i) => (
+            {testimonials.map((t, i) => (
               <ScrollRevealSection key={i} delay={i * 100}>
                 <div className="glass p-10 rounded-[32px] border-white/5 h-full flex flex-col hover:bg-white/5 transition-all duration-500">
                   <div className="flex gap-1 mb-6">
