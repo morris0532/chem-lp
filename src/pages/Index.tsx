@@ -606,75 +606,90 @@ function Applications({ product }: { product: any }) {
 }
 
 /* ─── Why Us ─── */
-function WhyUs() {
+function WhyUs({ product }: { product: any }) {
   const features = [
     {
       icon: Factory,
-      title: "Direct Factory Access",
-      desc: "Eliminate middlemen. Source directly from top-tier Chinese manufacturing facilities.",
+      title: "Direct China Factory",
+      desc: `Eliminate middlemen. Benefit from our ${product.supplyAbility} annual supply ability and 20+ years of manufacturing expertise for the best wholesale pricing.`,
     },
     {
       icon: ShieldCheck,
-      title: "Rigorous Quality Control",
-      desc: "Multi-stage testing ensuring every batch meets international purity standards.",
+      title: "Premium Quality Control",
+      desc: "Every container undergoes rigorous QC testing. We guarantee consistent purity across high-volume orders with full batch traceability.",
     },
     {
-      icon: Truck,
-      title: "Global Bulk Logistics",
-      desc: "Strategic partnerships with major shipping lines for reliable worldwide delivery.",
+      icon: Globe,
+      title: "Port-to-Door Logistics",
+      desc: "Direct export from major China ports (Qingdao, Tianjin, Shanghai). Reliable global shipping with FOB, CIF, and DDP options available.",
     },
     {
-      icon: Zap,
-      title: "Fast Response Time",
-      desc: "Expert technical support and formal quotations provided within 24 hours.",
-    }
+      icon: FlaskConical,
+      title: "Free Sample Support",
+      desc: "Dedicated account managers for large-scale contracts. We provide free samples and full documentation for seamless import processes.",
+    },
   ];
-
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden">
+    <section id="why-us" className="py-20 sm:py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <ScrollRevealSection>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-8 leading-tight">
-              Your Strategic Supply Chain <br />
-              <span className="gold-text">Partner</span>
+        <ScrollRevealSection>
+          <div className="text-center mb-16">
+            <span className="text-[#D4A843] text-sm font-semibold tracking-widest uppercase">
+              The China Advantage
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
+              Your Strategic <span className="gold-text">Supply Chain Partner</span>
             </h2>
-            <div className="space-y-6">
-              <div className="flex gap-4 p-6 rounded-2xl glass border-white/5">
-                <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center shrink-0">
-                  <BadgeCheck className="text-[#0A1628] h-6 w-6" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg mb-1">ISO Certified Supplier</h4>
-                  <p className="text-slate-400">Compliance with global safety and environmental regulations.</p>
-                </div>
-              </div>
-              <div className="flex gap-4 p-6 rounded-2xl glass border-white/5">
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                  <Globe className="text-[#D4A843] h-6 w-6" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Worldwide Network</h4>
-                  <p className="text-slate-400">Serving clients across 50+ countries with localized support.</p>
-                </div>
-              </div>
-            </div>
-          </ScrollRevealSection>
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {features.map((f, i) => (
-              <ScrollRevealSection key={i} delay={i * 100}>
-                <div className={`p-8 rounded-3xl glass border-white/5 h-full hover:bg-white/5 transition-all duration-300 group`}>
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <f.icon className="h-7 w-7 text-[#D4A843]" />
-                  </div>
-                  <h3 className="text-white font-bold text-xl mb-3">{f.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
-                </div>
-              </ScrollRevealSection>
-            ))}
+            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+              Leverage our massive production scale and logistical expertise for your industrial supply ability requirements.
+            </p>
           </div>
+        </ScrollRevealSection>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feat, i) => (
+            <ScrollRevealSection key={i} delay={i * 100}>
+              <div className="glass rounded-2xl p-6 group hover:border-[#D4A843]/30 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 right-0 h-1 gold-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="w-14 h-14 rounded-xl bg-[#D4A843]/10 flex items-center justify-center mb-5 group-hover:bg-[#D4A843]/20 transition-colors">
+                  <feat.icon className="h-7 w-7 text-[#D4A843]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {feat.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  {feat.desc}
+                </p>
+              </div>
+            </ScrollRevealSection>
+          ))}
         </div>
+        <ScrollRevealSection delay={200}>
+          <div className="mt-12 glass rounded-2xl p-8 grid sm:grid-cols-3 gap-8 text-center border border-[#D4A843]/20">
+            <div>
+              <Truck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
+              <h4 className="text-white font-semibold mb-1">Large Scale Logistics</h4>
+              <p className="text-slate-400 text-sm">
+                Optimized 20ft/40ft container loading for maximum cost efficiency
+              </p>
+            </div>
+            <div>
+              <FileCheck className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
+              <h4 className="text-white font-semibold mb-1">
+                Global Compliance
+              </h4>
+              <p className="text-slate-400 text-sm">
+                REACH, DMF, and full international chemical safety documentation
+              </p>
+            </div>
+            <div>
+              <Award className="h-8 w-8 text-[#D4A843] mx-auto mb-3" />
+              <h4 className="text-white font-semibold mb-1">Stable Supply Ability</h4>
+              <p className="text-slate-400 text-sm">
+                Reliable long-term contracts for year-round industrial stability
+              </p>
+            </div>
+          </div>
+        </ScrollRevealSection>
       </div>
     </section>
   );
@@ -1059,7 +1074,7 @@ export default function Index() {
       <TrustBar />
       <ProductDetails product={product} />
       <Applications product={product} />
-      <WhyUs />
+      <WhyUs product={product} />
       
       {/* Testimonials */}
       <section className="py-24 bg-white/5 relative">
