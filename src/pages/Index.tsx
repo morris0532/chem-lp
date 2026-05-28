@@ -179,7 +179,7 @@ function Navigation({ product }: { product: any }) {
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
   const stats = [
-    { value: "99.6%+", label: "Ultra High Purity" },
+    { value: "99%+", label: "Ultra High Purity" },
     { value: "20+", label: "Years Experience" },
     { value: "50+", label: "Countries Served" },
     { value: "24h", label: "Fast Response" },
