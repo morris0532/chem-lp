@@ -96,7 +96,7 @@ export const products: Record<string, ProductData> = {
     },
     specifications: [
       { label: "Appearance", value: "White Crystalline Powder" },
-      { label: "Purity", value: "≥ 99.0%" },
+      { label: "Purity", value: "≥ 99.6%" },
       { label: "Sulfate (SO₄)", value: "≤ 0.08%" },
       { label: "Ash Content", value: "≤ 0.01%" },
       { label: "Iron (Fe)", value: "≤ 0.002%" },
