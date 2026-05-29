@@ -220,12 +220,8 @@ function Hero({ product }: { product: any }) {
           <span className="gold-text">Supply Solutions</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto animate-fade-in-up animation-delay-300">
-          {product.subtitle}
-          <br />
-          <span className="text-slate-400">
-            Bulk Wholesale · Global Logistics · Strategic Sourcing
-          </span>
+        <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-4xl mx-auto animate-fade-in-up animation-delay-300">
+          {product.subtitle} · Bulk Wholesale · Global Logistics · Strategic Sourcing
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
