@@ -779,7 +779,7 @@ function InquiryForm({ product }: { product: any }) {
                   </div>
                   <div>
                     <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Direct Line</p>
-                    <p className="text-[#0A1628] font-bold text-xl">+86 123 4567 8900</p>
+                    <p className="text-[#0A1628] font-bold text-xl">+86 135 8326 2050</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-6 group">
@@ -1001,7 +1001,7 @@ function Footer({ product }: { product: any }) {
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Phone className="h-4 w-4 text-[#D4A843]" />
-                +86 123 4567 8900
+                +86 135 8326 2050
               </li>
               <li className="flex items-start gap-3 text-slate-400 text-sm">
                 <MapPin className="h-4 w-4 text-[#D4A843] mt-0.5" />
@@ -1195,7 +1195,7 @@ export default function Index() {
       <InquiryForm product={product} />
       <Footer product={product} />
       <FloatingCTA productName={product.name} />
-      <WhatsAppButton />
+      <WhatsAppButton productName={product.name} />
       <ChatWidget />
       <BackToTop />
     </div>
