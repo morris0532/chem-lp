@@ -179,9 +179,9 @@ function Navigation({ product }: { product: any }) {
 /* ─── Hero ─── */
 function Hero({ product }: { product: any }) {
   const stats = [
-    { value: "99%+", label: "Ultra High Purity" },
-    { value: "20+", label: "Years Experience" },
-    { value: "50+", label: "Countries Served" },
+    { value: "400,000MT", label: "Annual Capacity" },
+    { value: "15+", label: "Years Experience" },
+    { value: "60+", label: "Countries Served" },
     { value: "24h", label: "Fast Response" },
   ];
 
@@ -426,13 +426,12 @@ function SDSDownloadDialog({ product }: { product: any }) {
             </div>
             <div>
               <label className="text-sm text-slate-300 mb-1.5 block">
-                Company Name <span className="text-red-400">*</span>
+                Company Name
               </label>
               <Input
                 name="company"
                 value={form.company}
                 onChange={handleChange}
-                required
                 placeholder="Acme Chemicals Ltd"
                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-[#D4A843] focus:ring-[#D4A843]/20"
               />
@@ -842,10 +841,9 @@ function InquiryForm({ product }: { product: any }) {
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Company *</label>
+                      <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Company</label>
                       <Input
                         name="company"
-                        required
                         value={form.company}
                         onChange={handleChange}
                         placeholder="Acme Chemicals Ltd"
