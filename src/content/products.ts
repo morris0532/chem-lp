@@ -34,8 +34,8 @@ export const products: Record<string, ProductData> = {
     email: "sales@sinopeakchem.com",
     supplyAbility: "400,000 MT+",
     images: {
-      hero: "/images/hero-banner.webp",
-      product: "/images/product-sodium.webp",
+      hero: "/images/hero-sodium-thiosulfate.webp",
+      product: "/images/product-sodium-thiosulfate.webp",
     },
     seo: {
       title: "Sinopeakchem: Sodium Thiosulfate Supply Solutions China | 400,000MT Annual Supply Ability",
@@ -86,8 +86,8 @@ export const products: Record<string, ProductData> = {
     email: "sales@sinopeakchem.com",
     supplyAbility: "100,000 MT+",
     images: {
-      hero: "/images/hero-banner.webp",
-      product: "/images/product-sodium.webp",
+      hero: "/images/hero-oxalic-acid.webp",
+      product: "/images/product-oxalic-acid.webp",
     },
     seo: {
       title: "Sinopeakchem: Oxalic Acid Supply Solutions China | Bulk C2H2O4 Supplier 100,000MT",
@@ -138,8 +138,8 @@ export const products: Record<string, ProductData> = {
     email: "sales@sinopeakchem.com",
     supplyAbility: "300,000 MT+",
     images: {
-      hero: "/images/hero-banner.webp",
-      product: "/images/product-sodium.webp",
+      hero: "/images/hero-caustic-soda.webp",
+      product: "/images/product-caustic-soda.webp",
     },
     seo: {
       title: "Sinopeakchem: Caustic Soda Pearls & Flakes Supply Solutions China | 300,000MT Supply",
