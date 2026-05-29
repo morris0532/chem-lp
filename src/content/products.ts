@@ -177,7 +177,7 @@ export const products: Record<string, ProductData> = {
         tag: "Versatile",
         title: "Water Treatment & Chemical Manufacturing",
         desc: "Used for pH adjustment, water softening, and heavy metal removal. Also serves as a key intermediate in soap, detergent, and specialty chemical production.",
-        image: "/images/app-pharma.webp",
+        image: "/images/app-water.webp",
       },
     ],
   },
