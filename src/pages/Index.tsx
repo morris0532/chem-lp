@@ -788,7 +788,7 @@ function InquiryForm({ product }: { product: any }) {
                   </div>
                   <div>
                     <p className="text-[#0A1628]/60 text-sm font-bold uppercase tracking-wider">Headquarters</p>
-                    <p className="text-[#0A1628] font-bold text-xl">Industrial Park, Shanghai, China</p>
+                    <p className="text-[#0A1628] font-bold text-xl">Industrial Park, Qingdao, China</p>
                   </div>
                 </div>
               </div>
@@ -1005,7 +1005,7 @@ function Footer({ product }: { product: any }) {
               </li>
               <li className="flex items-start gap-3 text-slate-400 text-sm">
                 <MapPin className="h-4 w-4 text-[#D4A843] mt-0.5" />
-                Industrial Park, Shanghai, China
+                Industrial Park, Qingdao, China
               </li>
             </ul>
           </div>
