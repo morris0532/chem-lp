@@ -148,7 +148,7 @@ export const products: Record<string, ProductData> = {
     },
     specifications: [
       { label: "Available Forms", value: "Pearls (Beads) & Flakes" },
-      { label: "Purity (NaOH)", value: "≥ 99.0% (Solid) / 50% (Liquid)" },
+      { label: "Purity (NaOH)", value: "≥ 99.0%" },
       { label: "Particle Size (Pearls)", value: "0.5mm - 1.5mm (Uniform)" },
       { label: "Na₂CO₃ Content", value: "≤ 0.5%" },
       { label: "NaCl Content", value: "≤ 0.03%" },
